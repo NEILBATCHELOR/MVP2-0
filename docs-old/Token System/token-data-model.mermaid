@@ -1,0 +1,65 @@
+erDiagram
+    TOKEN {
+        string id PK
+        string project_id FK
+        string name
+        string symbol
+        number decimals
+        string standard
+        json blocks
+        json metadata
+        string status
+        string contract_preview
+        datetime created_at
+        datetime updated_at
+        string total_supply
+        boolean is_mintable
+        boolean is_burnable
+        boolean is_pausable
+        string[] features
+    }
+    
+    TOKEN_VERSION {
+        string id PK
+        string token_id FK
+        number version
+        json data
+        datetime created_at
+    }
+    
+    TOKEN_DEPLOYMENT {
+        string id PK
+        string token_id FK
+        string network
+        string transaction_hash
+        string contract_address
+        string deployment_status
+        json deployment_data
+        datetime created_at
+        datetime updated_at
+    }
+    
+    TOKEN_TEMPLATE {
+        string id PK
+        string project_id FK
+        string name
+        string description
+        string standard
+        json blocks
+        json metadata
+        datetime created_at
+        datetime updated_at
+    }
+    
+    PROJECT {
+        string id PK
+        string name
+        string description
+        boolean is_primary
+        datetime created_at
+    }
+    
+    PROJECT ||--o{ TOKEN : "has"
+    PROJECT ||--o{ TOKEN_TEMPLATE : "has"
+    TOKEN ||--o{ TOKEN_VERSION : "has versions"
+    TOKEN ||--o{ TOKEN_DEPLOYMENT : "has deployments"

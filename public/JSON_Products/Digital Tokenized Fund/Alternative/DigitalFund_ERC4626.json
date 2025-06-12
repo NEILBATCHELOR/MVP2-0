@@ -1,0 +1,90 @@
+{
+  "name": "Digital Short-Term Vault",
+  "symbol": "DSF4626",
+  "standard": "ERC-4626",
+  "decimals": 18,
+  "description": "Simplified vault interface for tokenized short-term bond fund with stablecoin integration",
+  "assetAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+  "assetName": "USD Coin",
+  "assetSymbol": "USDC",
+  "assetDecimals": 6,
+  "vaultType": "fund",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "vaultStrategy": "short_term_bond",
+  "customStrategy": false,
+  "strategyController": "0x8dAEBADE922dF735c38C80C7eBD708Af50815fAa",
+  "accessControl": "roles",
+  "permit": true,
+  "flashLoans": false,
+  "emergencyShutdown": true,
+  "yieldStrategy": "bond_ladder",
+  "strategyDetails": "Laddered short-term bonds auto-rebalanced via off-chain feed",
+  "expectedAPY": "4.1%",
+  "allowlist": false,
+  "customHooks": false,
+  "autoReporting": true,
+  "previewFunctions": true,
+  "limitFunctions": true,
+  "compoundIntegration": false,
+  "aaveIntegration": false,
+  "lidoIntegration": false,
+  "uniswapIntegration": false,
+  "curveIntegration": false,
+  "customIntegration": "Custodian Pricing API",
+  "fee": {
+    "enabled": true,
+    "managementFee": "0.2",
+    "performanceFee": "0",
+    "depositFee": "0",
+    "withdrawalFee": "0"
+  },
+  "limits": {
+    "minDeposit": "100",
+    "maxDeposit": "2000000",
+    "maxWithdraw": "500000",
+    "maxRedeem": "500000"
+  },
+  "rebalancingRules": {
+    "minRebalanceInterval": 604800,
+    "slippageTolerance": "0.1"
+  },
+  "performanceMetrics": true,
+  "standardArrays": {
+    "strategyParams": [
+      {
+        "name": "durationAvg",
+        "value": "6M",
+        "description": "Average duration"
+      }
+    ],
+    "assetAllocations": [
+      {
+        "asset": "UST Bills",
+        "percentage": 100
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://examplefund.io",
+    "riskRating": "Low",
+    "expectedAPY": "4.1%"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Digital Short-Term Vault",
+    "symbol": "DSF4626",
+    "asset_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "asset_name": "USD Coin",
+    "asset_symbol": "USDC",
+    "asset_decimals": 6,
+    "vault_type": "fund",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "vault_strategy": "short_term_bond",
+    "custom_strategy": false,
+    "strategy_controller": "0x8dAEBADE922dF735c38C80C7eBD708Af50815fAa"
+  }
+}

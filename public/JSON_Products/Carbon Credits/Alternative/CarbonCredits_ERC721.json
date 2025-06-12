@@ -1,0 +1,71 @@
+{
+  "name": "Carbon Offset NFT",
+  "symbol": "CO721",
+  "standard": "ERC-721",
+  "description": "Unique ERC-721 tokens representing registry-linked carbon offsets for verified retirement",
+  "baseUri": "https://api.carbonregistry.io/nfts/",
+  "metadataStorage": "ipfs",
+  "maxSupply": "100000",
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "isBurnable": true,
+  "isPausable": true,
+  "assetType": "environmental_asset",
+  "mintingMethod": "registry",
+  "autoIncrementIds": true,
+  "enumerable": true,
+  "uriStorage": "tokenId",
+  "accessControl": "roles",
+  "updatableUris": false,
+  "contractUri": "https://api.carbonregistry.io/collection.json",
+  "dynamicMetadata": false,
+  "revealable": false,
+  "reservedTokens": "0",
+  "maxMintsPerTx": "1",
+  "maxMintsPerWallet": "10",
+  "mintingPrice": "0",
+  "useSafeTransfer": true,
+  "enableFractionalOwnership": false,
+  "provenanceTracking": true,
+  "standardArrays": {
+    "tokenAttributes": [
+      {
+        "trait_type": "Project",
+        "values": [
+          "Rainforest REDD+",
+          "Blue Carbon Mangrove",
+          "Soil Sequestration"
+        ]
+      },
+      {
+        "trait_type": "Vintage",
+        "values": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022"
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://carbonregistry.io",
+    "collection": "Verified Retirement NFTs",
+    "creator": "Carbon Registry DAO"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Carbon Offset NFT",
+    "symbol": "CO721",
+    "base_uri": "https://api.carbonregistry.io/nfts/",
+    "metadata_storage": "ipfs",
+    "max_supply": "100000",
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000",
+    "is_burnable": true,
+    "is_pausable": true
+  }
+}

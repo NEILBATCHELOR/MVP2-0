@@ -1,0 +1,68 @@
+{
+  "name": "Macquarie Infra Series Ledger",
+  "symbol": "MQLEDGER",
+  "standard": "ERC-1400",
+  "description": "Structured ledger for Macquarie\u2019s tokenized infrastructure portfolio segmented by asset class",
+  "initialSupply": "6000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "infrastructure",
+  "issuingJurisdiction": "AU",
+  "issuingEntityName": "Macquarie Asset Management",
+  "issuingEntityLei": "549300VNZYYZXZT0FY14",
+  "documentUri": "https://macquarie.com/token-infrastructure-series.pdf",
+  "documentHash": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "controllerAddress": "0xABCDEF0000112233445566778899AABBCCDDEEFF",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "3000000",
+    "maxTransfer": "1000000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Data Centers",
+        "partitionId": "DC",
+        "amount": "2000000"
+      },
+      {
+        "name": "Toll Roads",
+        "partitionId": "TR",
+        "amount": "2000000"
+      },
+      {
+        "name": "Utilities",
+        "partitionId": "UT",
+        "amount": "2000000"
+      }
+    ],
+    "controllers": [
+      "0xABCDEF0000112233445566778899AABBCCDDEEFF"
+    ]
+  },
+  "metadata": {
+    "website": "https://macquarie.com",
+    "legalDocuments": "https://macquarie.com/infrastructure/series"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Macquarie Infra Series Ledger",
+    "symbol": "MQLEDGER",
+    "initial_supply": "6000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://macquarie.com/token-infrastructure-series.pdf",
+    "document_hash": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "controller_address": "0xABCDEF0000112233445566778899AABBCCDDEEFF",
+    "require_kyc": true,
+    "security_type": "infrastructure"
+  }
+}

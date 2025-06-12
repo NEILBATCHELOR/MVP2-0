@@ -1,0 +1,63 @@
+{
+  "name": "Climate Yield Tranches",
+  "symbol": "CLMT1400",
+  "standard": "ERC-1400",
+  "description": "Tranches of pooled climate receivables with risk-return structure for institutional investors",
+  "initialSupply": "3000000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "infrastructure",
+  "issuingJurisdiction": "AU",
+  "issuingEntityName": "PowerLedger SPV",
+  "issuingEntityLei": "549300KLIMATERECV1234",
+  "documentUri": "https://powerledger.io/climate-tranches.pdf",
+  "documentHash": "0xaaaaffffeeeeddddccccbbbbaaaaffffeeeeddddccccbbbbaaaaffffeeeedddd",
+  "controllerAddress": "0xCL1M4T3Y1ELD0000000000000000000000000001",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "1000000",
+    "maxTransfer": "500000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": false,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Senior PPA",
+        "partitionId": "SPPA",
+        "amount": "2000000"
+      },
+      {
+        "name": "Junior REC",
+        "partitionId": "JREC",
+        "amount": "1000000"
+      }
+    ],
+    "controllers": [
+      "0xCL1M4T3Y1ELD0000000000000000000000000001"
+    ]
+  },
+  "metadata": {
+    "website": "https://powerledger.io",
+    "legalDocuments": "https://powerledger.io/disclosures"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Climate Yield Tranches",
+    "symbol": "CLMT1400",
+    "initial_supply": "3000000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://powerledger.io/climate-tranches.pdf",
+    "document_hash": "0xaaaaffffeeeeddddccccbbbbaaaaffffeeeeddddccccbbbbaaaaffffeeeedddd",
+    "controller_address": "0xCL1M4T3Y1ELD0000000000000000000000000001",
+    "require_kyc": true,
+    "security_type": "infrastructure"
+  }
+}

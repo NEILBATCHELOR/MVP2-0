@@ -1,0 +1,1 @@
+ALTER TABLE projects ADD COLUMN currency VARCHAR(3) DEFAULT 'USD';

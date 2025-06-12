@@ -1,0 +1,63 @@
+{
+  "name": "Receivables Tranche Token",
+  "symbol": "TRNCH1400",
+  "standard": "ERC-1400",
+  "description": "Security token for receivables-backed yield tranches across senior and junior classes",
+  "initialSupply": "3000000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "debt",
+  "issuingJurisdiction": "US",
+  "issuingEntityName": "FactorChain SPV",
+  "issuingEntityLei": "9845001D947FAQLGKH04",
+  "documentUri": "https://factorchain.io/tranche-docs.pdf",
+  "documentHash": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "controllerAddress": "0x1234567890ABCDEF1234567890ABCDEF12345678",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "1500000",
+    "maxTransfer": "500000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Senior Tranche",
+        "partitionId": "SNR",
+        "amount": "2000000"
+      },
+      {
+        "name": "Junior Tranche",
+        "partitionId": "JNR",
+        "amount": "1000000"
+      }
+    ],
+    "controllers": [
+      "0x1234567890ABCDEF1234567890ABCDEF12345678"
+    ]
+  },
+  "metadata": {
+    "website": "https://factorchain.io",
+    "legalDocuments": "https://factorchain.io/terms"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Receivables Tranche Token",
+    "symbol": "TRNCH1400",
+    "initial_supply": "3000000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://factorchain.io/tranche-docs.pdf",
+    "document_hash": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "controller_address": "0x1234567890ABCDEF1234567890ABCDEF12345678",
+    "require_kyc": true,
+    "security_type": "debt"
+  }
+}

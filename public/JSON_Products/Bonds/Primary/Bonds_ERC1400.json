@@ -1,0 +1,58 @@
+{
+  "name": "SocGen Euro Bond 2026",
+  "symbol": "SGEUR26",
+  "standard": "ERC-1400",
+  "description": "Tokenized senior unsecured bond issued by Soci\u00e9t\u00e9 G\u00e9n\u00e9rale in EUR, 3-year maturity",
+  "initialSupply": "10000000",
+  "cap": "10000000",
+  "isMintable": false,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "debt",
+  "issuingJurisdiction": "FR",
+  "issuingEntityName": "Soci\u00e9t\u00e9 G\u00e9n\u00e9rale",
+  "issuingEntityLei": "O2RNE8IBXP4R0TD8PU41",
+  "documentUri": "https://www.societegenerale.com/token-bond2026.pdf",
+  "documentHash": "0xdecafbaddecafbaddecafbaddecafbaddecafbaddecafbaddecafbaddecafbad",
+  "controllerAddress": "0x9999999999999999999999999999999999999999",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "5000000",
+    "maxTransfer": "1000000"
+  },
+  "forcedTransfers": true,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Bond Tranche A",
+        "partitionId": "A",
+        "amount": "10000000"
+      }
+    ],
+    "controllers": [
+      "0x9999999999999999999999999999999999999999"
+    ]
+  },
+  "metadata": {
+    "website": "https://www.societegenerale.com",
+    "legalDocuments": "https://www.societegenerale.com/legal"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "SocGen Euro Bond 2026",
+    "symbol": "SGEUR26",
+    "initial_supply": "10000000",
+    "cap": "10000000",
+    "is_mintable": false,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://www.societegenerale.com/token-bond2026.pdf",
+    "document_hash": "0xdecafbaddecafbaddecafbaddecafbaddecafbaddecafbaddecafbaddecafbad",
+    "controller_address": "0x9999999999999999999999999999999999999999",
+    "require_kyc": true,
+    "security_type": "debt"
+  }
+}

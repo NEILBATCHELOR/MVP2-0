@@ -1,0 +1,58 @@
+{
+  "name": "KKR HC Growth Fund II Token",
+  "symbol": "KKRPE1400",
+  "standard": "ERC-1400",
+  "description": "Tokenized interest in KKR Health Care Strategic Growth Fund II, offered via Securitize to accredited investors",
+  "initialSupply": "2500000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "private_equity",
+  "issuingJurisdiction": "US",
+  "issuingEntityName": "KKR & Co. Inc.",
+  "issuingEntityLei": "549300U2N9CP1D0OLU23",
+  "documentUri": "https://securitize.io/documents/kkr-hc-growth-fund-ii.pdf",
+  "documentHash": "0xf00df00df00df00df00df00df00df00df00df00df00df00df00df00df00df00d",
+  "controllerAddress": "0xABCDEF1234567890ABCDEF1234567890ABCDEF12",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "1000000",
+    "maxTransfer": "500000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Series A",
+        "partitionId": "A",
+        "amount": "2500000"
+      }
+    ],
+    "controllers": [
+      "0xABCDEF1234567890ABCDEF1234567890ABCDEF12"
+    ]
+  },
+  "metadata": {
+    "website": "https://kkr.com",
+    "legalDocuments": "https://kkr.com/funds/hc-growth"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "KKR HC Growth Fund II Token",
+    "symbol": "KKRPE1400",
+    "initial_supply": "2500000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://securitize.io/documents/kkr-hc-growth-fund-ii.pdf",
+    "document_hash": "0xf00df00df00df00df00df00df00df00df00df00df00df00df00df00df00df00d",
+    "controller_address": "0xABCDEF1234567890ABCDEF1234567890ABCDEF12",
+    "require_kyc": true,
+    "security_type": "private_equity"
+  }
+}

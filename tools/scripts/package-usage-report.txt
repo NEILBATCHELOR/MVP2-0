@@ -1,0 +1,51 @@
+🔍 Package Usage Verification
+=============================
+
+[0;34mChecking Web3 packages:[0m
+========================
+Checking @reown/appkit... [0;32mUSED[0m
+Checking @reown/appkit-adapter-wagmi... [0;32mUSED[0m
+Checking wagmi... [0;32mUSED[0m
+Checking viem... [0;32mUSED[0m
+Checking ethers... [0;32mUSED[0m
+
+[0;34mChecking feature packages:[0m
+==========================
+Checking tesseract.js... [0;32mUSED[0m
+Checking react-webcam... [0;31mNOT FOUND[0m
+Checking vaul... [0;32mUSED[0m
+Checking embla-carousel-react... [0;31mNOT FOUND[0m
+Checking @hello-pangea/dnd... [0;31mNOT FOUND[0m
+Checking jspdf-autotable... [0;32mUSED[0m
+Checking sharp... [0;32mUSED[0m
+Checking ws... [0;32mUSED[0m
+Checking chalk... [0;32mUSED[0m
+Checking ts-morph... [0;31mNOT FOUND[0m
+
+[0;34mChecking server packages:[0m
+=========================
+Checking express... [0;32mUSED[0m
+Checking cors... [0;31mNOT FOUND[0m
+
+📊 SUMMARY
+==========
+
+[1;33mUnused feature packages:[0m
+  react-webcam
+  embla-carousel-react
+  @hello-pangea/dnd
+  ts-morph
+
+[1;33mUnused server packages:[0m
+  cors
+
+[0;34mSuggested removal command:[0m
+npm uninstall \
+  react-webcam \
+  embla-carousel-react \
+  @hello-pangea/dnd \
+  ts-morph \
+  cors
+
+[1;33mNote: This is a basic text search. Some packages might be used indirectly[0m
+[1;33mor in ways this script can't detect. Always test after removal![0m

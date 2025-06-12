@@ -1,0 +1,139 @@
+WITH new_investor AS (
+  INSERT INTO investors (
+    name,
+    email,
+    type,
+    kyc_status,
+    verification_details,
+    kyc_expiry_date,
+    company,
+    notes,
+    investor_status,
+    investor_type,
+    onboarding_completed,
+    risk_assessment,
+    profile_data,
+    investment_preferences,
+    accreditation_status,
+    accreditation_expiry_date,
+    accreditation_type,
+    tax_residency,
+    tax_id_number,
+    last_compliance_check
+  ) VALUES (
+    'State Pension Fund',
+    'contact@statepensionfund.com',
+    'entity',
+    'approved',
+    '{"method": "manual", "verifier": "John Doe"}',
+    '2024-10-01 00:00:00+00',
+    'State Pension Fund',
+    'Large pension fund with $10B AUM',
+    'active',
+    'pension_fund',
+    true,
+    '{"risk_level": "low", "assessment_date": "2023-09-01"}',
+    '{"aum": "10000000000", "investment_strategy": "conservative"}',
+    '{"preferred_sectors": ["technology", "healthcare"], "min_investment": 1000000}',
+    'approved',
+    '2025-10-01 00:00:00+00',
+    'verified',
+    'USA',
+    '123-45-6789',
+    '2023-09-15 00:00:00+00'
+  )
+  RETURNING investor_id
+),
+doc1 AS (
+  INSERT INTO documents (
+    entity_id,
+    entity_type,
+    name,
+    type,
+    status,
+    file_url,
+    expiry_date
+  )
+  SELECT
+    investor_id,
+    'investor',
+    'Accreditation Certificate',
+    'accreditation_certificate',
+    'approved',
+    'https://example.com/docs/accreditation.pdf',
+    '2025-10-01 00:00:00+00'
+  FROM new_investor
+),
+doc2 AS (
+  INSERT INTO documents (
+    entity_id,
+    entity_type,
+    name,
+    type,
+    status,
+    file_url
+  )
+  SELECT
+    investor_id,
+    'investor',
+    'Incorporation Certificate',
+    'incorporation_certificate',
+    'approved',
+    'https://example.com/docs/incorporation.pdf'
+  FROM new_investor
+),
+approval1 AS (
+  INSERT INTO investor_approvals (
+    investor_id,
+    approval_type,
+    status,
+    submission_date,
+    approval_date,
+    required_documents
+  )
+  SELECT
+    investor_id,
+    'KYC',
+    'approved',
+    '2023-09-01 00:00:00+00',
+    '2023-09-10 00:00:00+00',
+    '["incorporation_certificate", "authorized_signatory_list"]'
+  FROM new_investor
+),
+approval2 AS (
+  INSERT INTO investor_approvals (
+    investor_id,
+    approval_type,
+    status,
+    submission_date,
+    approval_date,
+    required_documents
+  )
+  SELECT
+    investor_id,
+    'accreditation',
+    'approved',
+    '2023-09-01 00:00:00+00',
+    '2023-09-10 00:00:00+00',
+    '["accreditation_certificate"]'
+  FROM new_investor
+),
+log1 AS (
+  INSERT INTO kyc_screening_logs (
+    investor_id,
+    previous_status,
+    new_status,
+    method,
+    performed_by,
+    created_at
+  )
+  SELECT
+    investor_id,
+    'pending',
+    'approved',
+    'manual_review',
+    'John Doe',
+    '2023-09-10 00:00:00+00'
+  FROM new_investor
+)
+SELECT 1;

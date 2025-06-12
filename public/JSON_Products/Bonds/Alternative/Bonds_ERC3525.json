@@ -1,0 +1,91 @@
+{
+  "name": "SG Bond Tranches",
+  "symbol": "SGBSLOTS",
+  "standard": "ERC-3525",
+  "description": "ERC-3525 slots for tranches of Soci\u00e9t\u00e9 G\u00e9n\u00e9rale structured bonds with callable and amortizing logic",
+  "valueDecimals": 2,
+  "baseUri": "https://api.socgen.com/bondslots/",
+  "metadataStorage": "ipfs",
+  "slotType": "maturity_tranche",
+  "isBurnable": true,
+  "isPausable": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "slotApprovals": true,
+  "valueApprovals": true,
+  "accessControl": "roles",
+  "updatableUris": false,
+  "updatableSlots": false,
+  "valueTransfersEnabled": true,
+  "mergable": false,
+  "splittable": true,
+  "dynamicMetadata": false,
+  "supportsEnumeration": true,
+  "fractionalTransfers": true,
+  "slotTransferability": true,
+  "transferRestrictions": true,
+  "dynamicAttributes": false,
+  "autoUnitCalculation": true,
+  "customSlotProperties": true,
+  "standardArrays": {
+    "slots": [
+      {
+        "id": "1",
+        "name": "Tranche A",
+        "description": "Short duration callable notes",
+        "properties": [
+          {
+            "name": "Maturity",
+            "value": "2025-12-31"
+          },
+          {
+            "name": "Coupon",
+            "value": "3.5%"
+          },
+          {
+            "name": "Callable",
+            "value": "Yes"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Tranche B",
+        "description": "Long duration amortizing notes",
+        "properties": [
+          {
+            "name": "Maturity",
+            "value": "2026-12-31"
+          },
+          {
+            "name": "Coupon",
+            "value": "5.0%"
+          },
+          {
+            "name": "Callable",
+            "value": "No"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://www.societegenerale.com",
+    "gameWorld": "NA"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "SG Bond Tranches",
+    "symbol": "SGBSLOTS",
+    "value_decimals": 2,
+    "base_uri": "https://api.socgen.com/bondslots/",
+    "metadata_storage": "ipfs",
+    "slot_type": "maturity_tranche",
+    "is_burnable": true,
+    "is_pausable": true,
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000"
+  }
+}

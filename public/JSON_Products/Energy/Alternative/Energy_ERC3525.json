@@ -1,0 +1,83 @@
+{
+  "name": "Energy Yield Tranche Slots",
+  "symbol": "ENERGYSLOTS",
+  "standard": "ERC-3525",
+  "description": "ERC-3525 slots for tokenized infrastructure yield instruments from renewable sources",
+  "valueDecimals": 2,
+  "baseUri": "https://metadata.brookfieldrenewable.com/yieldslots/",
+  "metadataStorage": "ipfs",
+  "slotType": "yield_tranche",
+  "isBurnable": true,
+  "isPausable": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "slotApprovals": true,
+  "valueApprovals": true,
+  "accessControl": "roles",
+  "updatableUris": true,
+  "updatableSlots": false,
+  "valueTransfersEnabled": true,
+  "mergable": false,
+  "splittable": true,
+  "dynamicMetadata": false,
+  "supportsEnumeration": true,
+  "fractionalTransfers": true,
+  "slotTransferability": true,
+  "transferRestrictions": true,
+  "dynamicAttributes": false,
+  "autoUnitCalculation": true,
+  "customSlotProperties": true,
+  "standardArrays": {
+    "slots": [
+      {
+        "id": "1",
+        "name": "Solar North America",
+        "description": "Annual fixed yield tranche from North American solar assets",
+        "properties": [
+          {
+            "name": "Yield",
+            "value": "6%"
+          },
+          {
+            "name": "Maturity",
+            "value": "2030-12-31"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Wind Europe",
+        "description": "Floating yield tranche from European wind farms",
+        "properties": [
+          {
+            "name": "Yield",
+            "value": "Variable"
+          },
+          {
+            "name": "Region",
+            "value": "Europe"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://brookfieldrenewable.com",
+    "gameWorld": "NA"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Energy Yield Tranche Slots",
+    "symbol": "ENERGYSLOTS",
+    "value_decimals": 2,
+    "base_uri": "https://metadata.brookfieldrenewable.com/yieldslots/",
+    "metadata_storage": "ipfs",
+    "slot_type": "yield_tranche",
+    "is_burnable": true,
+    "is_pausable": true,
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000"
+  }
+}

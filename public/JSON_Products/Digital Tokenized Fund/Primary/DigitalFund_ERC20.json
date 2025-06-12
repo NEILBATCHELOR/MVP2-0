@@ -1,0 +1,73 @@
+{
+  "name": "WisdomTree Treasury Token",
+  "symbol": "WTTY20",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 token for WisdomTree\u2019s short-term Treasury fund, used for wallet compatibility and liquidity",
+  "initialSupply": "1000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "equity",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": false,
+  "feeOnTransfer": {
+    "enabled": false,
+    "fee": "0",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": true,
+    "votingPeriod": 14,
+    "proposalThreshold": "10000",
+    "quorumPercentage": "10"
+  },
+  "metadata": {
+    "website": "https://wisdomtree.com",
+    "whitepaper": "",
+    "social": {
+      "twitter": "https://twitter.com/wisdomtreefunds"
+    }
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "WisdomTree Treasury Token",
+    "symbol": "WTTY20",
+    "initial_supply": "1000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "equity",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": false,
+    "fee_on_transfer": {
+      "enabled": false,
+      "fee": "0",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": true,
+      "votingPeriod": 14,
+      "proposalThreshold": "10000",
+      "quorumPercentage": "10"
+    }
+  }
+}

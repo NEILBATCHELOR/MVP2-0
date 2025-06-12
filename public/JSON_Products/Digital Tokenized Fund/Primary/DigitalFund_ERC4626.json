@@ -1,0 +1,90 @@
+{
+  "name": "Digital Treasury Vault",
+  "symbol": "DTF4626",
+  "standard": "ERC-4626",
+  "decimals": 18,
+  "description": "Tokenized vault representing shares in a short-term U.S. Treasury fund, offering yield via stablecoin on-chain",
+  "assetAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+  "assetName": "USD Coin",
+  "assetSymbol": "USDC",
+  "assetDecimals": 6,
+  "vaultType": "fund",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "vaultStrategy": "short_term_treasury",
+  "customStrategy": false,
+  "strategyController": "0x8dAEBADE922dF735c38C80C7eBD708Af50815fAa",
+  "accessControl": "roles",
+  "permit": true,
+  "flashLoans": false,
+  "emergencyShutdown": true,
+  "yieldStrategy": "treasury_ladder",
+  "strategyDetails": "Short-term U.S. Treasuries laddered by maturity held at BNY Mellon",
+  "expectedAPY": "4.3%",
+  "allowlist": true,
+  "customHooks": false,
+  "autoReporting": true,
+  "previewFunctions": true,
+  "limitFunctions": true,
+  "compoundIntegration": false,
+  "aaveIntegration": false,
+  "lidoIntegration": false,
+  "uniswapIntegration": false,
+  "curveIntegration": false,
+  "customIntegration": "None",
+  "fee": {
+    "enabled": true,
+    "managementFee": "0.25",
+    "performanceFee": "0.0",
+    "depositFee": "0.0",
+    "withdrawalFee": "0.0"
+  },
+  "limits": {
+    "minDeposit": "100",
+    "maxDeposit": "1000000",
+    "maxWithdraw": "500000",
+    "maxRedeem": "500000"
+  },
+  "rebalancingRules": {
+    "minRebalanceInterval": 604800,
+    "slippageTolerance": "0.2"
+  },
+  "performanceMetrics": true,
+  "standardArrays": {
+    "strategyParams": [
+      {
+        "name": "ladderDuration",
+        "value": "12M",
+        "description": "Rolling maturity structure"
+      }
+    ],
+    "assetAllocations": [
+      {
+        "asset": "U.S. Treasury Bills",
+        "percentage": 100
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://wisdomtree.com/digitalfunds",
+    "riskRating": "Low",
+    "expectedAPY": "4.3%"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Digital Treasury Vault",
+    "symbol": "DTF4626",
+    "asset_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "asset_name": "USD Coin",
+    "asset_symbol": "USDC",
+    "asset_decimals": 6,
+    "vault_type": "fund",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "vault_strategy": "short_term_treasury",
+    "custom_strategy": false,
+    "strategy_controller": "0x8dAEBADE922dF735c38C80C7eBD708Af50815fAa"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "name": "Brookfield Renewable Wrapper",
+  "symbol": "BRENE20",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 token representing tokenized equity in Brookfield Renewable infrastructure portfolio",
+  "initialSupply": "5000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "infrastructure",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": true,
+  "feeOnTransfer": {
+    "enabled": false,
+    "fee": "0",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": true,
+    "votingPeriod": 14,
+    "proposalThreshold": "50000",
+    "quorumPercentage": "10"
+  },
+  "metadata": {
+    "website": "https://brookfieldrenewable.com",
+    "whitepaper": "",
+    "social": {
+      "twitter": "https://twitter.com/BrookfieldRP"
+    }
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Brookfield Renewable Wrapper",
+    "symbol": "BRENE20",
+    "initial_supply": "5000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "infrastructure",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": true,
+    "fee_on_transfer": {
+      "enabled": false,
+      "fee": "0",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": true,
+      "votingPeriod": 14,
+      "proposalThreshold": "50000",
+      "quorumPercentage": "10"
+    }
+  }
+}

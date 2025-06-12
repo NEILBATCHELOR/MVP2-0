@@ -1,0 +1,99 @@
+{
+  "name": "Receivables Pool Vault",
+  "symbol": "INVP4626",
+  "standard": "ERC-4626",
+  "decimals": 18,
+  "description": "Tokenized vault holding pooled invoice receivables for institutional investors",
+  "assetAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+  "assetName": "USD Coin",
+  "assetSymbol": "USDC",
+  "assetDecimals": 6,
+  "vaultType": "asset_backed",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "vaultStrategy": "factoring",
+  "customStrategy": true,
+  "strategyController": "0x1234567890ABCDEF1234567890ABCDEF12345678",
+  "accessControl": "roles",
+  "permit": true,
+  "flashLoans": false,
+  "emergencyShutdown": true,
+  "yieldStrategy": "receivables_factoring",
+  "strategyDetails": "Short duration trade finance invoices with credit insurance and dynamic assignment",
+  "expectedAPY": "10-14%",
+  "allowlist": true,
+  "customHooks": true,
+  "autoReporting": true,
+  "previewFunctions": true,
+  "limitFunctions": true,
+  "compoundIntegration": false,
+  "aaveIntegration": false,
+  "lidoIntegration": false,
+  "uniswapIntegration": false,
+  "curveIntegration": false,
+  "customIntegration": "Invoice Oracle / Factoring Engine",
+  "fee": {
+    "enabled": true,
+    "managementFee": "2.0",
+    "performanceFee": "10.0",
+    "depositFee": "0.2",
+    "withdrawalFee": "0.2"
+  },
+  "limits": {
+    "minDeposit": "10000",
+    "maxDeposit": "5000000",
+    "maxWithdraw": "1000000",
+    "maxRedeem": "1000000"
+  },
+  "rebalancingRules": {
+    "minRebalanceInterval": 86400,
+    "slippageTolerance": "1.0"
+  },
+  "performanceMetrics": true,
+  "standardArrays": {
+    "strategyParams": [
+      {
+        "name": "invoiceMaturityDays",
+        "value": "45",
+        "description": "Average maturity of pooled invoices"
+      },
+      {
+        "name": "creditInsurance",
+        "value": "Yes",
+        "description": "Coverage status"
+      }
+    ],
+    "assetAllocations": [
+      {
+        "asset": "US Receivables",
+        "percentage": 70
+      },
+      {
+        "asset": "EU Receivables",
+        "percentage": 30
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://factorchain.io",
+    "riskRating": "Medium",
+    "expectedAPY": "10-14%"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Receivables Pool Vault",
+    "symbol": "INVP4626",
+    "asset_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "asset_name": "USD Coin",
+    "asset_symbol": "USDC",
+    "asset_decimals": 6,
+    "vault_type": "asset_backed",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "vault_strategy": "factoring",
+    "custom_strategy": true,
+    "strategy_controller": "0x1234567890ABCDEF1234567890ABCDEF12345678"
+  }
+}

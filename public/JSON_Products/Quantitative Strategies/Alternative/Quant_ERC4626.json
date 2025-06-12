@@ -1,0 +1,103 @@
+{
+  "name": "Systematic Alpha Vault",
+  "symbol": "ALPHAVAULT",
+  "standard": "ERC-4626",
+  "decimals": 18,
+  "description": "Tokenized vault representing a systematic alpha strategy with automated risk-managed execution",
+  "assetAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+  "assetName": "USD Coin",
+  "assetSymbol": "USDC",
+  "assetDecimals": 6,
+  "vaultType": "active_strategy",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "vaultStrategy": "multi-strategy",
+  "customStrategy": true,
+  "strategyController": "0x5555555555555555555555555555555555555555",
+  "accessControl": "roles",
+  "permit": true,
+  "flashLoans": false,
+  "emergencyShutdown": true,
+  "yieldStrategy": "quantitative_trading",
+  "strategyDetails": "Combines momentum, mean reversion, and statistical arbitrage strategies across global markets",
+  "expectedAPY": "12%",
+  "allowlist": false,
+  "customHooks": true,
+  "autoReporting": true,
+  "previewFunctions": true,
+  "limitFunctions": true,
+  "compoundIntegration": false,
+  "aaveIntegration": false,
+  "lidoIntegration": false,
+  "uniswapIntegration": false,
+  "curveIntegration": false,
+  "customIntegration": "Man AHL OMS",
+  "fee": {
+    "enabled": true,
+    "managementFee": "1.5",
+    "performanceFee": "15",
+    "depositFee": "0.0",
+    "withdrawalFee": "0.0"
+  },
+  "limits": {
+    "minDeposit": "5000",
+    "maxDeposit": "2000000",
+    "maxWithdraw": "250000",
+    "maxRedeem": "250000"
+  },
+  "rebalancingRules": {
+    "minRebalanceInterval": 3600,
+    "slippageTolerance": "0.75"
+  },
+  "performanceMetrics": true,
+  "standardArrays": {
+    "strategyParams": [
+      {
+        "name": "signalFrequency",
+        "value": "hourly",
+        "description": "Signal update frequency"
+      },
+      {
+        "name": "executionVenue",
+        "value": "multi-exchange",
+        "description": "Cross-market routing"
+      }
+    ],
+    "assetAllocations": [
+      {
+        "asset": "Futures",
+        "percentage": 50
+      },
+      {
+        "asset": "Options",
+        "percentage": 20
+      },
+      {
+        "asset": "Spot Crypto",
+        "percentage": 30
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://man.com/systematic-alpha",
+    "riskRating": "High",
+    "expectedAPY": "12%"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Systematic Alpha Vault",
+    "symbol": "ALPHAVAULT",
+    "asset_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "asset_name": "USD Coin",
+    "asset_symbol": "USDC",
+    "asset_decimals": 6,
+    "vault_type": "active_strategy",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "vault_strategy": "multi-strategy",
+    "custom_strategy": true,
+    "strategy_controller": "0x5555555555555555555555555555555555555555"
+  }
+}

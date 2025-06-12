@@ -1,0 +1,58 @@
+{
+  "name": "iShares BUIDL Token",
+  "symbol": "BUIDL1400",
+  "standard": "ERC-1400",
+  "description": "Tokenized shares of BlackRock's iShares USD Treasury MMF, with transfer restrictions and KYC compliance",
+  "initialSupply": "1000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "fund",
+  "issuingJurisdiction": "US",
+  "issuingEntityName": "BlackRock Advisors, LLC",
+  "issuingEntityLei": "549300A4VME7HPX2N966",
+  "documentUri": "https://blackrock.com/BUIDL/disclosure.pdf",
+  "documentHash": "0x123456789abcdef123456789abcdef123456789abcdef123456789abcdef1234",
+  "controllerAddress": "0x8888888888888888888888888888888888888888",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "1000000",
+    "maxTransfer": "500000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "USD MMF Shares",
+        "partitionId": "MMF",
+        "amount": "1000000"
+      }
+    ],
+    "controllers": [
+      "0x8888888888888888888888888888888888888888"
+    ]
+  },
+  "metadata": {
+    "website": "https://blackrock.com/BUIDL",
+    "legalDocuments": "https://blackrock.com/BUIDL/legal"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "iShares BUIDL Token",
+    "symbol": "BUIDL1400",
+    "initial_supply": "1000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://blackrock.com/BUIDL/disclosure.pdf",
+    "document_hash": "0x123456789abcdef123456789abcdef123456789abcdef123456789abcdef1234",
+    "controller_address": "0x8888888888888888888888888888888888888888",
+    "require_kyc": true,
+    "security_type": "fund"
+  }
+}

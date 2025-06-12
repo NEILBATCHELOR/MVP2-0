@@ -1,0 +1,95 @@
+{
+  "name": "BUIDL Vault Token",
+  "symbol": "BUIDL4626",
+  "standard": "ERC-4626",
+  "decimals": 18,
+  "description": "ERC-4626 vault interface for BlackRock iShares tokenized money market fund",
+  "assetAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+  "assetName": "USD Coin",
+  "assetSymbol": "USDC",
+  "assetDecimals": 6,
+  "vaultType": "yield",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "vaultStrategy": "lending",
+  "customStrategy": false,
+  "strategyController": "0x8888888888888888888888888888888888888888",
+  "accessControl": "roles",
+  "permit": true,
+  "flashLoans": false,
+  "emergencyShutdown": true,
+  "yieldStrategy": "treasury bills",
+  "strategyDetails": "Invests in short-duration US Treasury collateral via BNY Mellon custody",
+  "expectedAPY": "4.6%",
+  "allowlist": true,
+  "customHooks": false,
+  "autoReporting": true,
+  "previewFunctions": true,
+  "limitFunctions": true,
+  "compoundIntegration": false,
+  "aaveIntegration": false,
+  "lidoIntegration": false,
+  "uniswapIntegration": false,
+  "curveIntegration": false,
+  "customIntegration": "",
+  "fee": {
+    "enabled": true,
+    "managementFee": "0.2",
+    "performanceFee": "0.0",
+    "depositFee": "0.0",
+    "withdrawalFee": "0.0"
+  },
+  "limits": {
+    "minDeposit": "100",
+    "maxDeposit": "5000000",
+    "maxWithdraw": "1000000",
+    "maxRedeem": "1000000"
+  },
+  "rebalancingRules": {
+    "minRebalanceInterval": 86400,
+    "slippageTolerance": "0.5"
+  },
+  "performanceMetrics": true,
+  "standardArrays": {
+    "strategyParams": [
+      {
+        "name": "custodian",
+        "value": "BNY Mellon",
+        "description": "Fund custody"
+      },
+      {
+        "name": "investment",
+        "value": "UST",
+        "description": "T-bills allocation"
+      }
+    ],
+    "assetAllocations": [
+      {
+        "asset": "US Treasuries",
+        "percentage": 100
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://blackrock.com/BUIDL",
+    "riskRating": "Low",
+    "expectedAPY": "4.6%"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "BUIDL Vault Token",
+    "symbol": "BUIDL4626",
+    "asset_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "asset_name": "USD Coin",
+    "asset_symbol": "USDC",
+    "asset_decimals": 6,
+    "vault_type": "yield",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "vault_strategy": "lending",
+    "custom_strategy": false,
+    "strategy_controller": "0x8888888888888888888888888888888888888888"
+  }
+}

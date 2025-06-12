@@ -1,0 +1,99 @@
+{
+  "name": "Climate Yield Vault",
+  "symbol": "CLMT4626",
+  "standard": "ERC-4626",
+  "decimals": 18,
+  "description": "Tokenized yield vault pooling solar and wind receivables from utility contracts and REC sales",
+  "assetAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+  "assetName": "USD Coin",
+  "assetSymbol": "USDC",
+  "assetDecimals": 6,
+  "vaultType": "climate_receivables",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "vaultStrategy": "ppa_yield",
+  "customStrategy": true,
+  "strategyController": "0xCL1M4T3Y1ELD0000000000000000000000000001",
+  "accessControl": "roles",
+  "permit": true,
+  "flashLoans": false,
+  "emergencyShutdown": true,
+  "yieldStrategy": "renewable_ppa",
+  "strategyDetails": "Feed-in tariff and net metering contracts tokenized into yield pools, backstopped by REC monetization",
+  "expectedAPY": "5-8%",
+  "allowlist": true,
+  "customHooks": true,
+  "autoReporting": true,
+  "previewFunctions": true,
+  "limitFunctions": true,
+  "compoundIntegration": false,
+  "aaveIntegration": false,
+  "lidoIntegration": false,
+  "uniswapIntegration": false,
+  "curveIntegration": false,
+  "customIntegration": "Grid meter API + REC Oracle",
+  "fee": {
+    "enabled": true,
+    "managementFee": "1.5",
+    "performanceFee": "10.0",
+    "depositFee": "0.1",
+    "withdrawalFee": "0.1"
+  },
+  "limits": {
+    "minDeposit": "5000",
+    "maxDeposit": "2000000",
+    "maxWithdraw": "500000",
+    "maxRedeem": "500000"
+  },
+  "rebalancingRules": {
+    "minRebalanceInterval": 604800,
+    "slippageTolerance": "0.5"
+  },
+  "performanceMetrics": true,
+  "standardArrays": {
+    "strategyParams": [
+      {
+        "name": "PPA Term Avg",
+        "value": "12Y",
+        "description": "Avg duration of pooled contracts"
+      },
+      {
+        "name": "REC %",
+        "value": "15",
+        "description": "Revenue share from REC credits"
+      }
+    ],
+    "assetAllocations": [
+      {
+        "asset": "Solar PPA",
+        "percentage": 60
+      },
+      {
+        "asset": "Wind FIT",
+        "percentage": 40
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://powerledger.io",
+    "riskRating": "Low-Medium",
+    "expectedAPY": "5-8%"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Climate Yield Vault",
+    "symbol": "CLMT4626",
+    "asset_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "asset_name": "USD Coin",
+    "asset_symbol": "USDC",
+    "asset_decimals": 6,
+    "vault_type": "climate_receivables",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "vault_strategy": "ppa_yield",
+    "custom_strategy": true,
+    "strategy_controller": "0xCL1M4T3Y1ELD0000000000000000000000000001"
+  }
+}

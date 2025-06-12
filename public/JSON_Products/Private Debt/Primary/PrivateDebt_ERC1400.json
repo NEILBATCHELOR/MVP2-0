@@ -1,0 +1,63 @@
+{
+  "name": "HL Private Credit Token",
+  "symbol": "HLDEBT1400",
+  "standard": "ERC-1400",
+  "description": "Tokenized exposure to Hamilton Lane\u2019s private debt portfolio, targeting institutional investors",
+  "initialSupply": "3000000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "private_debt",
+  "issuingJurisdiction": "US",
+  "issuingEntityName": "Hamilton Lane Advisors, LLC",
+  "issuingEntityLei": "549300N3YBF2Z3ZCUF64",
+  "documentUri": "https://securitize.io/documents/hl-private-debt.pdf",
+  "documentHash": "0xc0ffee254c0ffee254c0ffee254c0ffee254c0ffee254c0ffee254c0ffee254c",
+  "controllerAddress": "0x444455556666777788889999AAAABBBBCCCCDDDD",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "1500000",
+    "maxTransfer": "500000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": false,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Senior Loans",
+        "partitionId": "SL",
+        "amount": "2000000"
+      },
+      {
+        "name": "Subordinated Loans",
+        "partitionId": "SUB",
+        "amount": "1000000"
+      }
+    ],
+    "controllers": [
+      "0x444455556666777788889999AAAABBBBCCCCDDDD"
+    ]
+  },
+  "metadata": {
+    "website": "https://hamiltonlane.com",
+    "legalDocuments": "https://hamiltonlane.com/private-debt"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "HL Private Credit Token",
+    "symbol": "HLDEBT1400",
+    "initial_supply": "3000000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://securitize.io/documents/hl-private-debt.pdf",
+    "document_hash": "0xc0ffee254c0ffee254c0ffee254c0ffee254c0ffee254c0ffee254c0ffee254c",
+    "controller_address": "0x444455556666777788889999AAAABBBBCCCCDDDD",
+    "require_kyc": true,
+    "security_type": "private_debt"
+  }
+}

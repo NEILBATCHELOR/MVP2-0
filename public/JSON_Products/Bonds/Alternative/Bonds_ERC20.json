@@ -1,0 +1,71 @@
+{
+  "name": "SG Bond Tranche Wrapper",
+  "symbol": "SGBOND20T",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 token representing Soci\u00e9t\u00e9 G\u00e9n\u00e9rale multi-tranche structured bond (mapped from ERC-3525)",
+  "initialSupply": "10000000",
+  "cap": "10000000",
+  "isMintable": false,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "debt",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": false,
+  "feeOnTransfer": {
+    "enabled": false,
+    "fee": "0",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": false,
+    "votingPeriod": 0,
+    "proposalThreshold": "0",
+    "quorumPercentage": "0"
+  },
+  "metadata": {
+    "website": "https://www.societegenerale.com",
+    "whitepaper": "",
+    "social": {}
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "SG Bond Tranche Wrapper",
+    "symbol": "SGBOND20T",
+    "initial_supply": "10000000",
+    "cap": "10000000",
+    "is_mintable": false,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "debt",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": false,
+    "fee_on_transfer": {
+      "enabled": false,
+      "fee": "0",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": false,
+      "votingPeriod": 0,
+      "proposalThreshold": "0",
+      "quorumPercentage": "0"
+    }
+  }
+}

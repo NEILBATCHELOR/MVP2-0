@@ -1,0 +1,63 @@
+{
+  "name": "Fund Share Token",
+  "symbol": "DTF1400",
+  "standard": "ERC-1400",
+  "description": "Regulated share token for tokenized U.S. Treasury mutual fund managed by WisdomTree",
+  "initialSupply": "1000000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "fund",
+  "issuingJurisdiction": "US",
+  "issuingEntityName": "WisdomTree Asset Management",
+  "issuingEntityLei": "549300ZK53V00CK2ZP03",
+  "documentUri": "https://wisdomtree.com/fund-share-docs.pdf",
+  "documentHash": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "controllerAddress": "0xFUND000000000000000000000000000000000000",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "2000000",
+    "maxTransfer": "1000000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": false,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Investor Class A",
+        "partitionId": "A",
+        "amount": "700000"
+      },
+      {
+        "name": "Institutional Class B",
+        "partitionId": "B",
+        "amount": "300000"
+      }
+    ],
+    "controllers": [
+      "0xFUND000000000000000000000000000000000000"
+    ]
+  },
+  "metadata": {
+    "website": "https://wisdomtree.com",
+    "legalDocuments": "https://wisdomtree.com/legal"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Fund Share Token",
+    "symbol": "DTF1400",
+    "initial_supply": "1000000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://wisdomtree.com/fund-share-docs.pdf",
+    "document_hash": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "controller_address": "0xFUND000000000000000000000000000000000000",
+    "require_kyc": true,
+    "security_type": "fund"
+  }
+}

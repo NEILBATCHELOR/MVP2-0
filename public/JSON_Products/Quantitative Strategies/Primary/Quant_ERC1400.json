@@ -1,0 +1,58 @@
+{
+  "name": "Systematic Alpha Fund Token",
+  "symbol": "ALPHA1400",
+  "standard": "ERC-1400",
+  "description": "Tokenized shares of a quantitative systematic trading strategy offered to professional investors",
+  "initialSupply": "2000000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "fund",
+  "issuingJurisdiction": "UK",
+  "issuingEntityName": "Man AHL",
+  "issuingEntityLei": "549300LIR8L8LUKLMN68",
+  "documentUri": "https://man.com/systematic-alpha-token.pdf",
+  "documentHash": "0xaaaabbbbccccddddeeeeffff1111222233334444555566667777888899990000",
+  "controllerAddress": "0x7777777777777777777777777777777777777777",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "1000000",
+    "maxTransfer": "250000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Institutional Tranche",
+        "partitionId": "INST",
+        "amount": "2000000"
+      }
+    ],
+    "controllers": [
+      "0x7777777777777777777777777777777777777777"
+    ]
+  },
+  "metadata": {
+    "website": "https://www.man.com",
+    "legalDocuments": "https://www.man.com/funds/systematic-alpha"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Systematic Alpha Fund Token",
+    "symbol": "ALPHA1400",
+    "initial_supply": "2000000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://man.com/systematic-alpha-token.pdf",
+    "document_hash": "0xaaaabbbbccccddddeeeeffff1111222233334444555566667777888899990000",
+    "controller_address": "0x7777777777777777777777777777777777777777",
+    "require_kyc": true,
+    "security_type": "fund"
+  }
+}

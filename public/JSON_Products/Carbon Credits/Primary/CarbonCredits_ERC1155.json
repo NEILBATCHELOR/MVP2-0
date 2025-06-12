@@ -1,0 +1,48 @@
+{
+  "name": "Tokenized Carbon Batches",
+  "symbol": "TCARB1155",
+  "standard": "ERC-1155",
+  "description": "ERC-1155 token structure for fungible batches of verified carbon credits by project and vintage",
+  "baseUri": "https://api.carbonpool.org/metadata/",
+  "metadataStorage": "ipfs",
+  "dynamicUris": false,
+  "tokenTypes": [
+    {
+      "id": "1001",
+      "name": "VCS-2019 Amazon Rainforest",
+      "supply": "100000",
+      "fungible": true,
+      "maxSupply": "100000",
+      "metadataUri": "ipfs://vcs2019-amazon"
+    },
+    {
+      "id": "1002",
+      "name": "GS-2021 Mangrove Restoration",
+      "supply": "50000",
+      "fungible": true,
+      "maxSupply": "50000",
+      "metadataUri": "ipfs://gs2021-mangrove"
+    }
+  ],
+  "accessControl": "roles",
+  "batchMinting": true,
+  "batchTransfers": true,
+  "transferRestrictions": true,
+  "whitelist": true,
+  "blacklist": false,
+  "supplyTracking": true,
+  "mintingRoles": true,
+  "burningEnabled": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "",
+  "pausable": true,
+  "updatableMetadata": false,
+  "containerEnabled": false,
+  "metadata": {
+    "website": "https://carbonpool.org",
+    "collection": "Verified Carbon Pools",
+    "creator": "CarbonPool Foundation"
+  },
+  "config_mode": "max"
+}

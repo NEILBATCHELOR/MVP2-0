@@ -1,0 +1,63 @@
+{
+  "name": "Klarna Equity Token (Series Ledger)",
+  "symbol": "KLRA-LGR",
+  "standard": "ERC-1400",
+  "description": "Structured equity representation for Klarna AB using partitioned and slotted ledger system",
+  "initialSupply": "5000000",
+  "cap": "5000000",
+  "isMintable": false,
+  "isBurnable": false,
+  "isPausable": true,
+  "securityType": "equity",
+  "issuingJurisdiction": "SE",
+  "issuingEntityName": "Klarna AB",
+  "issuingEntityLei": "5493001XS2FE8VZ0F079",
+  "documentUri": "https://investor.klarna.com/tokenized-equity-series.pdf",
+  "documentHash": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "controllerAddress": "0x4444444444444444444444444444444444444444",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "1000000",
+    "maxTransfer": "250000"
+  },
+  "forcedTransfers": true,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": false,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Series B",
+        "partitionId": "B",
+        "amount": "3000000"
+      },
+      {
+        "name": "Series C",
+        "partitionId": "C",
+        "amount": "2000000"
+      }
+    ],
+    "controllers": [
+      "0x4444444444444444444444444444444444444444"
+    ]
+  },
+  "metadata": {
+    "website": "https://investor.klarna.com",
+    "legalDocuments": "https://investor.klarna.com/disclosures"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Klarna Equity Token (Series Ledger)",
+    "symbol": "KLRA-LGR",
+    "initial_supply": "5000000",
+    "cap": "5000000",
+    "is_mintable": false,
+    "is_burnable": false,
+    "is_pausable": true,
+    "document_uri": "https://investor.klarna.com/tokenized-equity-series.pdf",
+    "document_hash": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "controller_address": "0x4444444444444444444444444444444444444444",
+    "require_kyc": true,
+    "security_type": "equity"
+  }
+}

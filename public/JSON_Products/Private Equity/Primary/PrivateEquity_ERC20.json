@@ -1,0 +1,73 @@
+{
+  "name": "KKR PE Wrapper Token",
+  "symbol": "KKRPE20",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 representation of tokenized private equity in KKR\u2019s HC Growth Fund II",
+  "initialSupply": "2500000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "private_equity",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": true,
+  "feeOnTransfer": {
+    "enabled": false,
+    "fee": "0",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": true,
+    "votingPeriod": 14,
+    "proposalThreshold": "10000",
+    "quorumPercentage": "10"
+  },
+  "metadata": {
+    "website": "https://kkr.com",
+    "whitepaper": "",
+    "social": {
+      "twitter": "https://twitter.com/kkr_co"
+    }
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "KKR PE Wrapper Token",
+    "symbol": "KKRPE20",
+    "initial_supply": "2500000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "private_equity",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": true,
+    "fee_on_transfer": {
+      "enabled": false,
+      "fee": "0",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": true,
+      "votingPeriod": 14,
+      "proposalThreshold": "10000",
+      "quorumPercentage": "10"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "SG Tranche Bond 2026",
+  "symbol": "SGTB26",
+  "standard": "ERC-1400",
+  "description": "Tokenized structured bond with multiple maturity slots and callable features issued by Soci\u00e9t\u00e9 G\u00e9n\u00e9rale",
+  "initialSupply": "10000000",
+  "cap": "10000000",
+  "isMintable": false,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "debt",
+  "issuingJurisdiction": "FR",
+  "issuingEntityName": "Soci\u00e9t\u00e9 G\u00e9n\u00e9rale",
+  "issuingEntityLei": "O2RNE8IBXP4R0TD8PU41",
+  "documentUri": "https://www.societegenerale.com/tranchebond2026.pdf",
+  "documentHash": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+  "controllerAddress": "0x1111222233334444555566667777888899990000",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "3000000",
+    "maxTransfer": "1000000"
+  },
+  "forcedTransfers": true,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": false,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Tranche A",
+        "partitionId": "A",
+        "amount": "5000000"
+      },
+      {
+        "name": "Tranche B",
+        "partitionId": "B",
+        "amount": "5000000"
+      }
+    ],
+    "controllers": [
+      "0x1111222233334444555566667777888899990000"
+    ]
+  },
+  "metadata": {
+    "website": "https://www.societegenerale.com",
+    "legalDocuments": "https://www.societegenerale.com/legal"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "SG Tranche Bond 2026",
+    "symbol": "SGTB26",
+    "initial_supply": "10000000",
+    "cap": "10000000",
+    "is_mintable": false,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://www.societegenerale.com/tranchebond2026.pdf",
+    "document_hash": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+    "controller_address": "0x1111222233334444555566667777888899990000",
+    "require_kyc": true,
+    "security_type": "debt"
+  }
+}

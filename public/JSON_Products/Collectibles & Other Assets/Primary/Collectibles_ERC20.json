@@ -1,0 +1,73 @@
+{
+  "name": "Whisky Cask Wrapper Token",
+  "symbol": "WHISK20",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 token representing fractional ownership in whisky cask NFTs",
+  "initialSupply": "100000",
+  "cap": "500000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "collectible",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": true,
+  "feeOnTransfer": {
+    "enabled": true,
+    "fee": "1.0",
+    "recipient": "0x000000000000000000000000000000000000dead",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": false,
+    "votingPeriod": 0,
+    "proposalThreshold": "0",
+    "quorumPercentage": "0"
+  },
+  "metadata": {
+    "website": "https://metacask.com",
+    "whitepaper": "",
+    "social": {
+      "twitter": "https://twitter.com/metacask"
+    }
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Whisky Cask Wrapper Token",
+    "symbol": "WHISK20",
+    "initial_supply": "100000",
+    "cap": "500000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "collectible",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": true,
+    "fee_on_transfer": {
+      "enabled": true,
+      "fee": "1.0",
+      "recipient": "0x000000000000000000000000000000000000dead",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": false,
+      "votingPeriod": 0,
+      "proposalThreshold": "0",
+      "quorumPercentage": "0"
+    }
+  }
+}

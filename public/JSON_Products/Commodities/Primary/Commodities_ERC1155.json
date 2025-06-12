@@ -1,0 +1,40 @@
+{
+  "name": "Tokenized Gold",
+  "symbol": "GOLD1155",
+  "standard": "ERC-1155",
+  "description": "Multi-token standard for fractional gold units held in LBMA-accredited vaults by Paxos",
+  "baseUri": "https://metadata.paxos.com/gold/",
+  "metadataStorage": "ipfs",
+  "dynamicUris": false,
+  "tokenTypes": [
+    {
+      "id": "1",
+      "name": "Gold Ounce Token",
+      "supply": "10000",
+      "fungible": true,
+      "maxSupply": "10000",
+      "metadataUri": "ipfs://gold-ounce-token-metadata"
+    }
+  ],
+  "accessControl": "roles",
+  "batchMinting": true,
+  "batchTransfers": true,
+  "transferRestrictions": true,
+  "whitelist": true,
+  "blacklist": false,
+  "supplyTracking": true,
+  "mintingRoles": true,
+  "burningEnabled": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "",
+  "pausable": true,
+  "updatableMetadata": false,
+  "containerEnabled": false,
+  "metadata": {
+    "website": "https://www.paxos.com/paxgold/",
+    "collection": "PAXG",
+    "creator": "Paxos Trust Company"
+  },
+  "config_mode": "max"
+}

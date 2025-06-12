@@ -1,0 +1,63 @@
+{
+  "name": "HL Credit Series Ledger",
+  "symbol": "HLDLEDGER",
+  "standard": "ERC-1400",
+  "description": "Tokenized credit series structure managed by Hamilton Lane across senior, mezzanine and direct lending portfolios",
+  "initialSupply": "3000000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "private_debt",
+  "issuingJurisdiction": "US",
+  "issuingEntityName": "Hamilton Lane Advisors, LLC",
+  "issuingEntityLei": "549300N3YBF2Z3ZCUF64",
+  "documentUri": "https://hamiltonlane.com/structured-debt-ledger.pdf",
+  "documentHash": "0x123abc123abc123abc123abc123abc123abc123abc123abc123abc123abc123a",
+  "controllerAddress": "0xAA55AA55AA55AA55AA55AA55AA55AA55AA55AA55",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "2000000",
+    "maxTransfer": "500000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Senior Loans",
+        "partitionId": "SNR",
+        "amount": "1500000"
+      },
+      {
+        "name": "Mezzanine Loans",
+        "partitionId": "MEZZ",
+        "amount": "1500000"
+      }
+    ],
+    "controllers": [
+      "0xAA55AA55AA55AA55AA55AA55AA55AA55AA55AA55"
+    ]
+  },
+  "metadata": {
+    "website": "https://hamiltonlane.com",
+    "legalDocuments": "https://hamiltonlane.com/credit-series"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "HL Credit Series Ledger",
+    "symbol": "HLDLEDGER",
+    "initial_supply": "3000000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://hamiltonlane.com/structured-debt-ledger.pdf",
+    "document_hash": "0x123abc123abc123abc123abc123abc123abc123abc123abc123abc123abc123a",
+    "controller_address": "0xAA55AA55AA55AA55AA55AA55AA55AA55AA55AA55",
+    "require_kyc": true,
+    "security_type": "private_debt"
+  }
+}

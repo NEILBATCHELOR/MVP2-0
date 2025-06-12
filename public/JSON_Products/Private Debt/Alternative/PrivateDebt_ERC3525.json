@@ -1,0 +1,91 @@
+{
+  "name": "HL Credit Tranches",
+  "symbol": "HLDEBTSLOTS",
+  "standard": "ERC-3525",
+  "description": "ERC-3525 tokens representing credit risk tranches (senior, mezzanine) in private loan pools",
+  "valueDecimals": 2,
+  "baseUri": "https://metadata.hamiltonlane.com/slots/",
+  "metadataStorage": "ipfs",
+  "slotType": "credit_tranche",
+  "isBurnable": true,
+  "isPausable": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "slotApprovals": true,
+  "valueApprovals": true,
+  "accessControl": "roles",
+  "updatableUris": true,
+  "updatableSlots": false,
+  "valueTransfersEnabled": true,
+  "mergable": false,
+  "splittable": true,
+  "dynamicMetadata": false,
+  "supportsEnumeration": true,
+  "fractionalTransfers": true,
+  "slotTransferability": true,
+  "transferRestrictions": true,
+  "dynamicAttributes": false,
+  "autoUnitCalculation": true,
+  "customSlotProperties": true,
+  "standardArrays": {
+    "slots": [
+      {
+        "id": "1",
+        "name": "Senior Tranche",
+        "description": "Low-risk senior secured private loans",
+        "properties": [
+          {
+            "name": "Loan Type",
+            "value": "Senior Secured"
+          },
+          {
+            "name": "Interest",
+            "value": "8%"
+          },
+          {
+            "name": "Maturity",
+            "value": "3Y"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Mezzanine Tranche",
+        "description": "Higher-yield subordinated debt tranche",
+        "properties": [
+          {
+            "name": "Loan Type",
+            "value": "Subordinated"
+          },
+          {
+            "name": "Interest",
+            "value": "13%"
+          },
+          {
+            "name": "Maturity",
+            "value": "5Y"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://hamiltonlane.com",
+    "gameWorld": "NA"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "HL Credit Tranches",
+    "symbol": "HLDEBTSLOTS",
+    "value_decimals": 2,
+    "base_uri": "https://metadata.hamiltonlane.com/slots/",
+    "metadata_storage": "ipfs",
+    "slot_type": "credit_tranche",
+    "is_burnable": true,
+    "is_pausable": true,
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000"
+  }
+}

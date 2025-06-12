@@ -1,0 +1,48 @@
+{
+  "name": "Whisky Vault Token",
+  "symbol": "WHISKV1155",
+  "standard": "ERC-1155",
+  "description": "ERC-1155 tokens representing classes of rare collectible whisky stored in bonded vaults",
+  "baseUri": "https://api.metacask.com/metadata/vault/",
+  "metadataStorage": "ipfs",
+  "dynamicUris": false,
+  "tokenTypes": [
+    {
+      "id": "1",
+      "name": "Macallan 18Y",
+      "supply": "1000",
+      "fungible": true,
+      "maxSupply": "1500",
+      "metadataUri": "ipfs://macallan-18y-metadata"
+    },
+    {
+      "id": "2",
+      "name": "Lagavulin 25Y",
+      "supply": "500",
+      "fungible": true,
+      "maxSupply": "750",
+      "metadataUri": "ipfs://lagavulin-25y-metadata"
+    }
+  ],
+  "accessControl": "roles",
+  "batchMinting": true,
+  "batchTransfers": true,
+  "transferRestrictions": true,
+  "whitelist": true,
+  "blacklist": false,
+  "supplyTracking": true,
+  "mintingRoles": true,
+  "burningEnabled": true,
+  "hasRoyalty": true,
+  "royaltyPercentage": "2.5",
+  "royaltyReceiver": "0x000000000000000000000000000000000000dead",
+  "pausable": true,
+  "updatableMetadata": false,
+  "containerEnabled": false,
+  "metadata": {
+    "website": "https://metacask.com",
+    "collection": "Whisky Vault Editions",
+    "creator": "Metacask"
+  },
+  "config_mode": "max"
+}

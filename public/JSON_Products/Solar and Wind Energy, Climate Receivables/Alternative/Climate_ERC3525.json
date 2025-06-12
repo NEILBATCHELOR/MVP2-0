@@ -1,0 +1,95 @@
+{
+  "name": "Climate Receivables Slot Token",
+  "symbol": "CLMTSLOT",
+  "standard": "ERC-3525",
+  "description": "ERC-3525 tokenized receivable slots from solar/wind PPAs and ESG-tied credit instruments",
+  "valueDecimals": 2,
+  "baseUri": "https://api.powerledger.io/slots/",
+  "metadataStorage": "ipfs",
+  "slotType": "ppa_receivable",
+  "isBurnable": true,
+  "isPausable": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "slotApprovals": true,
+  "valueApprovals": true,
+  "accessControl": "roles",
+  "updatableUris": true,
+  "updatableSlots": true,
+  "valueTransfersEnabled": true,
+  "mergable": true,
+  "splittable": true,
+  "dynamicMetadata": false,
+  "supportsEnumeration": true,
+  "fractionalTransfers": true,
+  "slotTransferability": true,
+  "transferRestrictions": true,
+  "dynamicAttributes": true,
+  "autoUnitCalculation": true,
+  "customSlotProperties": true,
+  "standardArrays": {
+    "slots": [
+      {
+        "id": "301",
+        "name": "Solar PPA - TX Grid 15Y",
+        "description": "Power agreement with TX utility over 15 years, solar metered",
+        "properties": [
+          {
+            "name": "Maturity",
+            "value": "2040-01-01"
+          },
+          {
+            "name": "Rate",
+            "value": "4.5c/kWh"
+          },
+          {
+            "name": "Capacity",
+            "value": "10MW"
+          },
+          {
+            "name": "Region",
+            "value": "ERCOT"
+          }
+        ]
+      },
+      {
+        "id": "302",
+        "name": "Wind REC - PJM Market",
+        "description": "Verified renewable credit stream via PJM-GATS",
+        "properties": [
+          {
+            "name": "Annual Volume",
+            "value": "10000 MWh"
+          },
+          {
+            "name": "Price/REC",
+            "value": "15 USD"
+          },
+          {
+            "name": "Counterparty",
+            "value": "GreenPower Inc."
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://powerledger.io",
+    "gameWorld": "NA"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Climate Receivables Slot Token",
+    "symbol": "CLMTSLOT",
+    "value_decimals": 2,
+    "base_uri": "https://api.powerledger.io/slots/",
+    "metadata_storage": "ipfs",
+    "slot_type": "ppa_receivable",
+    "is_burnable": true,
+    "is_pausable": true,
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000"
+  }
+}

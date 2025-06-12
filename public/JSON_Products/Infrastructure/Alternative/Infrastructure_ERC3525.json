@@ -1,0 +1,83 @@
+{
+  "name": "Infrastructure Tranche Slots",
+  "symbol": "INFRASLOTS",
+  "standard": "ERC-3525",
+  "description": "ERC-3525 slots for tokenized project-level infrastructure investments across asset types",
+  "valueDecimals": 2,
+  "baseUri": "https://metadata.macquarie.com/slots/",
+  "metadataStorage": "ipfs",
+  "slotType": "infra_project_type",
+  "isBurnable": true,
+  "isPausable": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "slotApprovals": true,
+  "valueApprovals": true,
+  "accessControl": "roles",
+  "updatableUris": true,
+  "updatableSlots": false,
+  "valueTransfersEnabled": true,
+  "mergable": false,
+  "splittable": true,
+  "dynamicMetadata": false,
+  "supportsEnumeration": true,
+  "fractionalTransfers": true,
+  "slotTransferability": true,
+  "transferRestrictions": true,
+  "dynamicAttributes": false,
+  "autoUnitCalculation": true,
+  "customSlotProperties": true,
+  "standardArrays": {
+    "slots": [
+      {
+        "id": "1",
+        "name": "Sydney Toll Road",
+        "description": "Revenue-linked tranche from Macquarie toll road project in Sydney",
+        "properties": [
+          {
+            "name": "IRR",
+            "value": "8%"
+          },
+          {
+            "name": "Duration",
+            "value": "10Y"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Singapore Data Center",
+        "description": "Infrastructure equity slot for digital asset hub in Southeast Asia",
+        "properties": [
+          {
+            "name": "IRR",
+            "value": "12%"
+          },
+          {
+            "name": "Location",
+            "value": "Singapore"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://macquarie.com",
+    "gameWorld": "NA"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Infrastructure Tranche Slots",
+    "symbol": "INFRASLOTS",
+    "value_decimals": 2,
+    "base_uri": "https://metadata.macquarie.com/slots/",
+    "metadata_storage": "ipfs",
+    "slot_type": "infra_project_type",
+    "is_burnable": true,
+    "is_pausable": true,
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000"
+  }
+}

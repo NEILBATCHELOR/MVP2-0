@@ -1,0 +1,203 @@
+classDiagram
+    %% Core Token Management
+    class TokenBuilder {
+        +render()
+        +handleCreateToken()
+        +handleSelectToken()
+        +handleDeleteToken()
+        +handleCloneToken()
+        +saveToken()
+    }
+    
+    class TokenForm {
+        +handleInputChange()
+        +handleSubmit()
+    }
+
+    class TokenList {
+        +render()
+        +handleTokenSelection()
+    }
+
+    class TokenDetail {
+        +render()
+        +fetchTokenDetails()
+    }
+
+    class TokenManagement {
+        +render()
+        +handleStatusChange()
+        +initiateDeployment()
+    }
+
+    %% Token Standards Config
+    class ERC20Config {
+        +render()
+        +handleInputChange()
+        +handleBlockToggle()
+    }
+
+    class ERC721Config {
+        +render()
+        +handleInputChange()
+        +handleMetadataChange()
+    }
+
+    class ERC1155Config {
+        +render()
+        +handleInputChange()
+        +handleTokenTypeChange()
+    }
+
+    class ERC1400Config {
+        +render()
+        +handleInputChange()
+        +handlePartitionChange()
+    }
+
+    class ERC3525Config {
+        +render()
+        +handleInputChange()
+        +handleSlotChange()
+    }
+
+    class ERC4626Config {
+        +render()
+        +handleInputChange()
+        +handleAssetSelection()
+    }
+
+    %% ERC1400 Specialized
+    class EquityConfig {
+        +render()
+        +handleEquityTypeChange()
+    }
+
+    class DebtConfig {
+        +render()
+        +handleDebtTypeChange()
+    }
+
+    class DerivativeConfig {
+        +render()
+        +handleDerivativeTypeChange()
+    }
+
+    %% Essential Components
+    class ERC20EssentialConfig {
+        +render()
+        +conditionallyRenderConfig()
+    }
+
+    class ERC20SimpleConfig {
+        +render()
+        +handleBasicInputChange()
+    }
+
+    class ERC20DetailedConfig {
+        +render()
+        +handleAdvancedInputChange()
+    }
+
+    %% Deployment Components
+    class TokenDeploymentWizard {
+        +render()
+        +handleNext()
+        +handleBack()
+        +handleDeploymentComplete()
+    }
+
+    class DeploymentPanel {
+        +render()
+        +connectWallet()
+        +deployToken()
+        +trackTransaction()
+    }
+
+    %% Template Components
+    class TokenTemplateBuilder {
+        +render()
+        +handleSaveTemplate()
+        +handleApplyTemplate()
+    }
+
+    class TokenTemplateSelector {
+        +render()
+        +handleTemplateSelection()
+    }
+
+    %% Utils and Config
+    class Config {
+        +USE_SIMPLE_CONFIG
+        +ENABLED_STANDARDS
+    }
+
+    class Types {
+        +interface TokenConfig
+        +interface ERC20Config
+        +interface ERC721Config
+        +interface TokenFormProps
+    }
+
+    class TokenTemplate {
+        +interface TokenTemplate
+        +interface Token
+        +interface TokenFormState
+        +getDefaultTokenForm()
+    }
+
+    %% Relationships
+    TokenBuilder --> TokenList: manages
+    TokenBuilder --> TokenForm: uses
+    TokenBuilder --> TokenManagement: navigates to
+    TokenBuilder --> TokenTemplateBuilder: integrates
+    TokenBuilder --> TokenTemplateSelector: uses for selection
+    
+    TokenForm --> ERC20Config: uses conditionally
+    TokenForm --> ERC721Config: uses conditionally
+    TokenForm --> ERC1155Config: uses conditionally
+    TokenForm --> ERC1400Config: uses conditionally
+    TokenForm --> ERC3525Config: uses conditionally
+    TokenForm --> ERC4626Config: uses conditionally
+    
+    ERC1400Config --> EquityConfig: specializes into
+    ERC1400Config --> DebtConfig: specializes into
+    ERC1400Config --> DerivativeConfig: specializes into
+    
+    ERC20EssentialConfig --> ERC20SimpleConfig: uses when simple
+    ERC20EssentialConfig --> ERC20DetailedConfig: uses when detailed
+    
+    TokenDeploymentWizard --> DeploymentPanel: uses for deployment
+    TokenDeploymentWizard --> ERC20Config: imports for config
+    TokenDeploymentWizard --> ERC721Config: imports for config
+    TokenDeploymentWizard --> ERC1155Config: imports for config
+    
+    TokenTemplateBuilder --> TokenTemplate: uses for data structure
+    TokenTemplateSelector --> TokenTemplate: uses for data structure
+    
+    Config --> ERC20EssentialConfig: configures
+    Config --> TokenBuilder: configures
+    Types --> TokenForm: defines props
+    Types --> TokenBuilder: defines state
+    
+    %% Services
+    class TokenService {
+        +getTokens()
+        +getToken()
+        +createToken()
+        +updateToken()
+        +deleteToken()
+        +cloneToken()
+    }
+    
+    class TokenTemplateService {
+        +getTokenTemplates()
+        +getTokenTemplate()
+        +createTokenFromTemplate()
+        +deleteTemplateGroup()
+    }
+    
+    TokenBuilder --> TokenService: uses for data operations
+    TokenBuilder --> TokenTemplateService: uses for template operations
+    TokenManagement --> TokenService: uses for status updates
+    TokenTemplateBuilder --> TokenTemplateService: uses for template management

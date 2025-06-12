@@ -1,0 +1,103 @@
+{
+  "name": "Quant Vault",
+  "symbol": "QSTRAT",
+  "standard": "ERC-4626",
+  "decimals": 18,
+  "description": "ERC-4626 vault representing a quantitative trading strategy with active portfolio management",
+  "assetAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+  "assetName": "USD Coin",
+  "assetSymbol": "USDC",
+  "assetDecimals": 6,
+  "vaultType": "active_strategy",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "vaultStrategy": "quant_trading",
+  "customStrategy": true,
+  "strategyController": "0x7777777777777777777777777777777777777777",
+  "accessControl": "roles",
+  "permit": true,
+  "flashLoans": false,
+  "emergencyShutdown": true,
+  "yieldStrategy": "multi-asset",
+  "strategyDetails": "Market neutral strategy across FX, futures, and crypto with volatility targeting",
+  "expectedAPY": "10-15%",
+  "allowlist": true,
+  "customHooks": true,
+  "autoReporting": true,
+  "previewFunctions": true,
+  "limitFunctions": true,
+  "compoundIntegration": false,
+  "aaveIntegration": false,
+  "lidoIntegration": false,
+  "uniswapIntegration": false,
+  "curveIntegration": false,
+  "customIntegration": "Custom OMS and execution layer",
+  "fee": {
+    "enabled": true,
+    "managementFee": "2.0",
+    "performanceFee": "20.0",
+    "depositFee": "0.1",
+    "withdrawalFee": "0.1"
+  },
+  "limits": {
+    "minDeposit": "10000",
+    "maxDeposit": "1000000",
+    "maxWithdraw": "250000",
+    "maxRedeem": "250000"
+  },
+  "rebalancingRules": {
+    "minRebalanceInterval": 43200,
+    "slippageTolerance": "1.0"
+  },
+  "performanceMetrics": true,
+  "standardArrays": {
+    "strategyParams": [
+      {
+        "name": "volatilityTarget",
+        "value": "12%",
+        "description": "Annual volatility target"
+      },
+      {
+        "name": "leverage",
+        "value": "1.5x",
+        "description": "Gross leverage ratio"
+      }
+    ],
+    "assetAllocations": [
+      {
+        "asset": "FX Futures",
+        "percentage": 30
+      },
+      {
+        "asset": "Global Equities",
+        "percentage": 40
+      },
+      {
+        "asset": "Crypto Derivatives",
+        "percentage": 30
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://www.man.com/quantvault",
+    "riskRating": "Medium-High",
+    "expectedAPY": "10-15%"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Quant Vault",
+    "symbol": "QSTRAT",
+    "asset_address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "asset_name": "USD Coin",
+    "asset_symbol": "USDC",
+    "asset_decimals": 6,
+    "vault_type": "active_strategy",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "vault_strategy": "quant_trading",
+    "custom_strategy": true,
+    "strategy_controller": "0x7777777777777777777777777777777777777777"
+  }
+}

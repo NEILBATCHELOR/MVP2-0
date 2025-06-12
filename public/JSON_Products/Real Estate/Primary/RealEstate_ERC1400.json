@@ -1,0 +1,58 @@
+{
+  "name": "Houston CRE Equity Token",
+  "symbol": "HCRE1400",
+  "standard": "ERC-1400",
+  "description": "Tokenized equity interest in a Class A multifamily real estate asset in Houston, Texas",
+  "initialSupply": "1000000",
+  "cap": "1500000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "real_estate",
+  "issuingJurisdiction": "US",
+  "issuingEntityName": "RedSwan CRE",
+  "issuingEntityLei": "5493001R09SWXKRE4V42",
+  "documentUri": "https://redswan.io/documents/houston-cre-equity.pdf",
+  "documentHash": "0x9999999999999999999999999999999999999999999999999999999999999999",
+  "controllerAddress": "0x9876543210FEDCBA9876543210FEDCBA98765432",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "300000",
+    "maxTransfer": "100000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": false,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Series Equity",
+        "partitionId": "EQTY",
+        "amount": "1000000"
+      }
+    ],
+    "controllers": [
+      "0x9876543210FEDCBA9876543210FEDCBA98765432"
+    ]
+  },
+  "metadata": {
+    "website": "https://redswan.io",
+    "legalDocuments": "https://redswan.io/offerings"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Houston CRE Equity Token",
+    "symbol": "HCRE1400",
+    "initial_supply": "1000000",
+    "cap": "1500000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://redswan.io/documents/houston-cre-equity.pdf",
+    "document_hash": "0x9999999999999999999999999999999999999999999999999999999999999999",
+    "controller_address": "0x9876543210FEDCBA9876543210FEDCBA98765432",
+    "require_kyc": true,
+    "security_type": "real_estate"
+  }
+}

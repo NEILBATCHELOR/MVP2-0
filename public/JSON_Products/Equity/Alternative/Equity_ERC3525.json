@@ -1,0 +1,83 @@
+{
+  "name": "Klarna Equity Slots",
+  "symbol": "KLRA-SLT",
+  "standard": "ERC-3525",
+  "description": "ERC-3525 semi-fungible token representing different equity series tranches of Klarna",
+  "valueDecimals": 0,
+  "baseUri": "https://api.klarna.com/equity/slots/",
+  "metadataStorage": "ipfs",
+  "slotType": "share_class",
+  "isBurnable": false,
+  "isPausable": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "slotApprovals": true,
+  "valueApprovals": true,
+  "accessControl": "roles",
+  "updatableUris": true,
+  "updatableSlots": false,
+  "valueTransfersEnabled": true,
+  "mergable": false,
+  "splittable": false,
+  "dynamicMetadata": false,
+  "supportsEnumeration": true,
+  "fractionalTransfers": false,
+  "slotTransferability": true,
+  "transferRestrictions": true,
+  "dynamicAttributes": false,
+  "autoUnitCalculation": true,
+  "customSlotProperties": false,
+  "standardArrays": {
+    "slots": [
+      {
+        "id": "1",
+        "name": "Series B",
+        "description": "Preferred shares with voting rights",
+        "properties": [
+          {
+            "name": "Voting Rights",
+            "value": "Yes"
+          },
+          {
+            "name": "Dividend",
+            "value": "2.5%"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Series C",
+        "description": "Non-voting equity with higher dividend",
+        "properties": [
+          {
+            "name": "Voting Rights",
+            "value": "No"
+          },
+          {
+            "name": "Dividend",
+            "value": "5.0%"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://investor.klarna.com",
+    "gameWorld": "NA"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Klarna Equity Slots",
+    "symbol": "KLRA-SLT",
+    "value_decimals": 0,
+    "base_uri": "https://api.klarna.com/equity/slots/",
+    "metadata_storage": "ipfs",
+    "slot_type": "share_class",
+    "is_burnable": false,
+    "is_pausable": true,
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "name": "RedSwan Houston Property NFT",
+  "symbol": "RSH721",
+  "standard": "ERC-721",
+  "description": "ERC-721 tokens representing fractional ownership in a single commercial property via unique identifiers",
+  "baseUri": "https://api.redswan.io/realestate/721/",
+  "metadataStorage": "ipfs",
+  "maxSupply": "1000",
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "isBurnable": true,
+  "isPausable": true,
+  "assetType": "unique_asset",
+  "mintingMethod": "whitelist",
+  "autoIncrementIds": true,
+  "enumerable": true,
+  "uriStorage": "tokenId",
+  "accessControl": "roles",
+  "updatableUris": false,
+  "contractUri": "https://api.redswan.io/realestate/collection.json",
+  "dynamicMetadata": false,
+  "revealable": false,
+  "reservedTokens": "0",
+  "maxMintsPerTx": "1",
+  "maxMintsPerWallet": "5",
+  "mintingPrice": "0",
+  "useSafeTransfer": true,
+  "enableFractionalOwnership": true,
+  "provenanceTracking": true,
+  "standardArrays": {
+    "tokenAttributes": [
+      {
+        "trait_type": "Unit",
+        "values": [
+          "A1",
+          "B2",
+          "C3",
+          "D4"
+        ]
+      },
+      {
+        "trait_type": "Floor",
+        "values": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://redswan.io",
+    "collection": "RedSwan Houston Portfolio",
+    "creator": "RedSwan CRE"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "RedSwan Houston Property NFT",
+    "symbol": "RSH721",
+    "base_uri": "https://api.redswan.io/realestate/721/",
+    "metadata_storage": "ipfs",
+    "max_supply": "1000",
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000",
+    "is_burnable": true,
+    "is_pausable": true
+  }
+}

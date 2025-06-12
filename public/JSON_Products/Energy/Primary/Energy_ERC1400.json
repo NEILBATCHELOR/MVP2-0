@@ -1,0 +1,63 @@
+{
+  "name": "Brookfield Renewable Token",
+  "symbol": "BRENE1400",
+  "standard": "ERC-1400",
+  "description": "Tokenized equity interest in Brookfield Renewable\u2019s distributed energy portfolio",
+  "initialSupply": "5000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "infrastructure",
+  "issuingJurisdiction": "CA",
+  "issuingEntityName": "Brookfield Renewable Partners",
+  "issuingEntityLei": "549300LNXYEQWECYJO02",
+  "documentUri": "https://brookfieldrenewable.com/token-equity-offering.pdf",
+  "documentHash": "0xabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcd",
+  "controllerAddress": "0xEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "2000000",
+    "maxTransfer": "1000000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "North America Solar",
+        "partitionId": "NASOL",
+        "amount": "3000000"
+      },
+      {
+        "name": "Europe Wind",
+        "partitionId": "EUWND",
+        "amount": "2000000"
+      }
+    ],
+    "controllers": [
+      "0xEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+    ]
+  },
+  "metadata": {
+    "website": "https://brookfieldrenewable.com",
+    "legalDocuments": "https://brookfieldrenewable.com/tokenization"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Brookfield Renewable Token",
+    "symbol": "BRENE1400",
+    "initial_supply": "5000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://brookfieldrenewable.com/token-equity-offering.pdf",
+    "document_hash": "0xabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcd",
+    "controller_address": "0xEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE",
+    "require_kyc": true,
+    "security_type": "infrastructure"
+  }
+}

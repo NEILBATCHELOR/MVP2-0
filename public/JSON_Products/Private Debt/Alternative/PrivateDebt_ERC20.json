@@ -1,0 +1,73 @@
+{
+  "name": "HL Debt Unified Token",
+  "symbol": "HLDEBT20T",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 representation of Hamilton Lane\u2019s structured credit series and tranches",
+  "initialSupply": "3000000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "private_debt",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": true,
+  "feeOnTransfer": {
+    "enabled": false,
+    "fee": "0",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": true,
+    "votingPeriod": 14,
+    "proposalThreshold": "100000",
+    "quorumPercentage": "20"
+  },
+  "metadata": {
+    "website": "https://hamiltonlane.com",
+    "whitepaper": "",
+    "social": {
+      "twitter": "https://twitter.com/hamiltonlane"
+    }
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "HL Debt Unified Token",
+    "symbol": "HLDEBT20T",
+    "initial_supply": "3000000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "private_debt",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": true,
+    "fee_on_transfer": {
+      "enabled": false,
+      "fee": "0",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": true,
+      "votingPeriod": 14,
+      "proposalThreshold": "100000",
+      "quorumPercentage": "20"
+    }
+  }
+}

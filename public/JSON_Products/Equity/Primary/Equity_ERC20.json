@@ -1,0 +1,71 @@
+{
+  "name": "Klarna Equity Wrapper",
+  "symbol": "KLRA20",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 token representing Klarna tokenized equity for custody and settlement purposes",
+  "initialSupply": "5000000",
+  "cap": "5000000",
+  "isMintable": false,
+  "isBurnable": false,
+  "isPausable": true,
+  "tokenType": "security",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": false,
+  "feeOnTransfer": {
+    "enabled": false,
+    "fee": "0.0",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": false,
+    "votingPeriod": 0,
+    "proposalThreshold": "0",
+    "quorumPercentage": "0"
+  },
+  "metadata": {
+    "website": "https://investor.klarna.com",
+    "whitepaper": "",
+    "social": {}
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Klarna Equity Wrapper",
+    "symbol": "KLRA20",
+    "initial_supply": "5000000",
+    "cap": "5000000",
+    "is_mintable": false,
+    "is_burnable": false,
+    "is_pausable": true,
+    "token_type": "security",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": false,
+    "fee_on_transfer": {
+      "enabled": false,
+      "fee": "0.0",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": false,
+      "votingPeriod": 0,
+      "proposalThreshold": "0",
+      "quorumPercentage": "0"
+    }
+  }
+}

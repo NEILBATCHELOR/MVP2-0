@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1000" height="800" fill="#f8f9fa" />
+  
+  <!-- Title -->
+  <text x="500" y="40" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle">Tokens System Architecture</text>
+  
+  <!-- Main Sections -->
+  <g id="core-components">
+    <!-- Main Token Components -->
+    <rect x="40" y="80" width="920" height="130" rx="5" fill="#e3f2fd" stroke="#2196f3" stroke-width="2" />
+    <text x="50" y="100" font-family="Arial" font-size="16" font-weight="bold">Core Token Components</text>
+    
+    <!-- Component Boxes -->
+    <rect x="50" y="110" width="120" height="80" rx="5" fill="#ffffff" stroke="#2196f3" />
+    <text x="110" y="150" font-family="Arial" font-size="14" text-anchor="middle">TokenBuilder</text>
+    
+    <rect x="180" y="110" width="120" height="80" rx="5" fill="#ffffff" stroke="#2196f3" />
+    <text x="240" y="150" font-family="Arial" font-size="14" text-anchor="middle">TokenList</text>
+    
+    <rect x="310" y="110" width="120" height="80" rx="5" fill="#ffffff" stroke="#2196f3" />
+    <text x="370" y="150" font-family="Arial" font-size="14" text-anchor="middle">TokenDetail</text>
+    
+    <rect x="440" y="110" width="120" height="80" rx="5" fill="#ffffff" stroke="#2196f3" />
+    <text x="500" y="150" font-family="Arial" font-size="14" text-anchor="middle">TokenManagement</text>
+    
+    <rect x="570" y="110" width="120" height="80" rx="5" fill="#ffffff" stroke="#2196f3" />
+    <text x="630" y="150" font-family="Arial" font-size="14" text-anchor="middle">TokenForm</text>
+    
+    <rect x="700" y="110" width="120" height="80" rx="5" fill="#ffffff" stroke="#2196f3" />
+    <text x="760" y="150" font-family="Arial" font-size="14" text-anchor="middle">TokenTemplate</text>
+    
+    <rect x="830" y="110" width="120" height="80" rx="5" fill="#ffffff" stroke="#2196f3" />
+    <text x="890" y="150" font-family="Arial" font-size="14" text-anchor="middle">TokenNavigation</text>
+  </g>
+  
+  <!-- Standards Section -->
+  <g id="token-standards">
+    <rect x="40" y="230" width="560" height="250" rx="5" fill="#ffebee" stroke="#f44336" stroke-width="2" />
+    <text x="50" y="250" font-family="Arial" font-size="16" font-weight="bold">Token Standards</text>
+    
+    <!-- Standard Components -->
+    <rect x="50" y="260" width="120" height="80" rx="5" fill="#ffffff" stroke="#f44336" />
+    <text x="110" y="300" font-family="Arial" font-size="14" text-anchor="middle">ERC20Config</text>
+    
+    <rect x="180" y="260" width="120" height="80" rx="5" fill="#ffffff" stroke="#f44336" />
+    <text x="240" y="300" font-family="Arial" font-size="14" text-anchor="middle">ERC721Config</text>
+    
+    <rect x="310" y="260" width="120" height="80" rx="5" fill="#ffffff" stroke="#f44336" />
+    <text x="370" y="300" font-family="Arial" font-size="14" text-anchor="middle">ERC1155Config</text>
+    
+    <rect x="440" y="260" width="120" height="80" rx="5" fill="#ffffff" stroke="#f44336" />
+    <text x="500" y="300" font-family="Arial" font-size="14" text-anchor="middle">ERC3525Config</text>
+    
+    <rect x="50" y="350" width="120" height="80" rx="5" fill="#ffffff" stroke="#f44336" />
+    <text x="110" y="390" font-family="Arial" font-size="14" text-anchor="middle">ERC4626Config</text>
+    
+    <rect x="180" y="350" width="120" height="80" rx="5" fill="#ffffff" stroke="#f44336" />
+    <text x="240" y="390" font-family="Arial" font-size="14" text-anchor="middle">ERC1400Config</text>
+    
+    <!-- ERC1400 Specialized -->
+    <rect x="310" y="370" width="250" height="60" rx="5" fill="#ffcdd2" stroke="#f44336" stroke-dasharray="5,3" />
+    <text x="435" y="390" font-family="Arial" font-size="12" text-anchor="middle">ERC1400 Specialized Components</text>
+    <text x="435" y="410" font-family="Arial" font-size="10" text-anchor="middle">(Equity, Debt, Derivative, Fund, REIT, etc.)</text>
+  </g>
+  
+  <!-- Essential Configuration -->
+  <g id="essential-config">
+    <rect x="620" y="230" width="340" height="250" rx="5" fill="#e8f5e9" stroke="#4caf50" stroke-width="2" />
+    <text x="630" y="250" font-family="Arial" font-size="16" font-weight="bold">Essential Configurations</text>
+    
+    <!-- Essential Components -->
+    <rect x="630" y="260" width="320" height="50" rx="5" fill="#ffffff" stroke="#4caf50" />
+    <text x="790" y="290" font-family="Arial" font-size="14" text-anchor="middle">ERC{X}EssentialConfig Components</text>
+    
+    <!-- Simple vs Detailed -->
+    <rect x="630" y="320" width="150" height="150" rx="5" fill="#ffffff" stroke="#4caf50" />
+    <text x="705" y="340" font-family="Arial" font-size="12" text-anchor="middle">Simple Configuration</text>
+    <text x="705" y="360" font-family="Arial" font-size="10" text-anchor="middle">(Core properties only)</text>
+    <text x="705" y="380" font-family="Arial" font-size="10" text-anchor="middle">• Minimal UI</text>
+    <text x="705" y="400" font-family="Arial" font-size="10" text-anchor="middle">• Basic properties</text>
+    <text x="705" y="420" font-family="Arial" font-size="10" text-anchor="middle">• Quick configuration</text>
+    <text x="705" y="440" font-family="Arial" font-size="10" text-anchor="middle">• Limited customization</text>
+    
+    <rect x="800" y="320" width="150" height="150" rx="5" fill="#ffffff" stroke="#4caf50" />
+    <text x="875" y="340" font-family="Arial" font-size="12" text-anchor="middle">Detailed Configuration</text>
+    <text x="875" y="360" font-family="Arial" font-size="10" text-anchor="middle">(All properties)</text>
+    <text x="875" y="380" font-family="Arial" font-size="10" text-anchor="middle">• Advanced UI</text>
+    <text x="875" y="400" font-family="Arial" font-size="10" text-anchor="middle">• Complete property set</text>
+    <text x="875" y="420" font-family="Arial" font-size="10" text-anchor="middle">• Full customization</text>
+    <text x="875" y="440" font-family="Arial" font-size="10" text-anchor="middle">• Detailed configuration</text>
+  </g>
+  
+  <!-- Deployment -->
+  <g id="deployment">
+    <rect x="40" y="500" width="450" height="150" rx="5" fill="#fff8e1" stroke="#ffc107" stroke-width="2" />
+    <text x="50" y="520" font-family="Arial" font-size="16" font-weight="bold">Deployment</text>
+    
+    <!-- Deployment Components -->
+    <rect x="50" y="530" width="180" height="100" rx="5" fill="#ffffff" stroke="#ffc107" />
+    <text x="140" y="570" font-family="Arial" font-size="14" text-anchor="middle">TokenDeploymentWizard</text>
+    <text x="140" y="590" font-family="Arial" font-size="10" text-anchor="middle">(Multi-step deployment flow)</text>
+    
+    <rect x="250" y="530" width="180" height="100" rx="5" fill="#ffffff" stroke="#ffc107" />
+    <text x="340" y="570" font-family="Arial" font-size="14" text-anchor="middle">DeploymentPanel</text>
+    <text x="340" y="590" font-family="Arial" font-size="10" text-anchor="middle">(Blockchain deployment)</text>
+  </g>
+  
+  <!-- Templates -->
+  <g id="templates">
+    <rect x="510" y="500" width="450" height="150" rx="5" fill="#e0f7fa" stroke="#00bcd4" stroke-width="2" />
+    <text x="520" y="520" font-family="Arial" font-size="16" font-weight="bold">Templates</text>
+    
+    <!-- Template Components -->
+    <rect x="520" y="530" width="180" height="100" rx="5" fill="#ffffff" stroke="#00bcd4" />
+    <text x="610" y="560" font-family="Arial" font-size="14" text-anchor="middle">TokenTemplateBuilder</text>
+    <text x="610" y="580" font-family="Arial" font-size="10" text-anchor="middle">(Create/edit templates)</text>
+    
+    <rect x="720" y="530" width="180" height="100" rx="5" fill="#ffffff" stroke="#00bcd4" />
+    <text x="810" y="560" font-family="Arial" font-size="14" text-anchor="middle">TokenTemplateSelector</text>
+    <text x="810" y="580" font-family="Arial" font-size="10" text-anchor="middle">(Template selection UI)</text>
+  </g>
+  
+  <!-- Utils and Config -->
+  <g id="utils-config">
+    <rect x="40" y="670" width="920" height="100" rx="5" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2" />
+    <text x="50" y="690" font-family="Arial" font-size="16" font-weight="bold">Utils and Configuration</text>
+    
+    <!-- Utils Components -->
+    <rect x="50" y="700" width="180" height="60" rx="5" fill="#ffffff" stroke="#9c27b0" />
+    <text x="140" y="730" font-family="Arial" font-size="14" text-anchor="middle">config.ts</text>
+    <text x="140" y="750" font-family="Arial" font-size="10" text-anchor="middle">(Configuration options)</text>
+    
+    <rect x="250" y="700" width="180" height="60" rx="5" fill="#ffffff" stroke="#9c27b0" />
+    <text x="340" y="730" font-family="Arial" font-size="14" text-anchor="middle">types.ts</text>
+    <text x="340" y="750" font-family="Arial" font-size="10" text-anchor="middle">(Type definitions)</text>
+    
+    <rect x="450" y="700" width="180" height="60" rx="5" fill="#ffffff" stroke="#9c27b0" />
+    <text x="540" y="730" font-family="Arial" font-size="14" text-anchor="middle">tokenTemplate.ts</text>
+    <text x="540" y="750" font-family="Arial" font-size="10" text-anchor="middle">(Template definitions)</text>
+    
+    <rect x="650" y="700" width="180" height="60" rx="5" fill="#ffffff" stroke="#9c27b0" />
+    <text x="740" y="730" font-family="Arial" font-size="14" text-anchor="middle">deployment.ts</text>
+    <text x="740" y="750" font-family="Arial" font-size="10" text-anchor="middle">(Deployment utilities)</text>
+  </g>
+  
+  <!-- Flow Arrows -->
+  <!-- Core to Standards -->
+  <line x1="110" y1="190" x2="110" y2="260" stroke="#2196f3" stroke-width="2" stroke-dasharray="5,3">
+    <animate attributeName="stroke-dashoffset" from="8" to="0" dur="2s" repeatCount="indefinite" />
+  </line>
+  <polygon points="110,260 105,250 115,250" fill="#2196f3" />
+  
+  <!-- Core to Essential -->
+  <line x1="760" y1="190" x2="760" y2="260" stroke="#2196f3" stroke-width="2" stroke-dasharray="5,3">
+    <animate attributeName="stroke-dashoffset" from="8" to="0" dur="2s" repeatCount="indefinite" />
+  </line>
+  <polygon points="760,260 755,250 765,250" fill="#2196f3" />
+  
+  <!-- Standards to Deployment -->
+  <line x1="150" y1="430" x2="150" y2="530" stroke="#f44336" stroke-width="2" stroke-dasharray="5,3">
+    <animate attributeName="stroke-dashoffset" from="8" to="0" dur="2s" repeatCount="indefinite" />
+  </line>
+  <polygon points="150,530 145,520 155,520" fill="#f44336" />
+  
+  <!-- Essential to Templates -->
+  <line x1="750" y1="480" x2="650" y2="530" stroke="#4caf50" stroke-width="2" stroke-dasharray="5,3">
+    <animate attributeName="stroke-dashoffset" from="8" to="0" dur="2s" repeatCount="indefinite" />
+  </line>
+  <polygon points="650,530 654,518 662,525" fill="#4caf50" />
+  
+  <!-- Config to all sections -->
+  <line x1="140" y1="700" x2="140" y2="670" stroke="#9c27b0" stroke-width="2" stroke-dasharray="5,3">
+    <animate attributeName="stroke-dashoffset" from="8" to="0" dur="2s" repeatCount="indefinite" />
+  </line>
+  <polygon points="140,670 135,680 145,680" fill="#9c27b0" />
+</svg>

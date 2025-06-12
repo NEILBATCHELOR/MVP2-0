@@ -1,0 +1,73 @@
+{
+  "name": "Climate Receivables Token",
+  "symbol": "CLMT20",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 wrapper token providing liquidity exposure to PPA and REC-based receivable slots",
+  "initialSupply": "3000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "asset_backed",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": true,
+  "feeOnTransfer": {
+    "enabled": true,
+    "fee": "0.3",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": true,
+    "votingPeriod": 14,
+    "proposalThreshold": "50000",
+    "quorumPercentage": "10"
+  },
+  "metadata": {
+    "website": "https://powerledger.io",
+    "whitepaper": "",
+    "social": {
+      "twitter": "https://twitter.com/PowerLedger_io"
+    }
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Climate Receivables Token",
+    "symbol": "CLMT20",
+    "initial_supply": "3000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "asset_backed",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": true,
+    "fee_on_transfer": {
+      "enabled": true,
+      "fee": "0.3",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": true,
+      "votingPeriod": 14,
+      "proposalThreshold": "50000",
+      "quorumPercentage": "10"
+    }
+  }
+}

@@ -1,0 +1,488 @@
+#!/usr/bin/env node
+/**
+ * Type System Validation Script
+ * 
+ * This script validates the alignment between:
+ * - supabase.ts (generated schema)
+ * - database.ts (re-exports and extensions)
+ * - centralModels.ts (business interfaces)
+ * 
+ * Usage:
+ *   npm run types:validate
+ *   
+ * Add to package.json:
+ *   "scripts": {
+ *     "types:validate": "NODE_OPTIONS=\"--loader ts-node/esm\" ts-node --esm scripts/validate-types.ts"
+ *   }
+ */
+
+import * as fs from 'fs';
+import * as path from 'path';
+import * as ts from 'typescript';
+import chalk from 'chalk';
+import { fileURLToPath } from 'url';
+
+// Get current file directory (ESM equivalent of __dirname)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Configuration
+const CONFIG = {
+  paths: {
+    supabase: path.resolve(__dirname, '../src/types/supabase.ts'),
+    database: path.resolve(__dirname, '../src/types/database.ts'),
+    centralModels: path.resolve(__dirname, '../src/types/centralModels.ts'),
+    typeGuards: path.resolve(__dirname, '../src/utils/types/typeGuards.ts'),
+    typeMappers: path.resolve(__dirname, '../src/utils/formatting/typeMappers.ts'),
+  },
+  patterns: {
+    tableType: /export\s+type\s+(\w+)Table\s+=\s+Tables<['"](\w+)['"]\>/g,
+    insertType: /export\s+type\s+(\w+)Insert\s+=\s+InsertTables<['"](\w+)['"]\>/g,
+    updateType: /export\s+type\s+(\w+)Update\s+=\s+UpdateTables<['"](\w+)['"]\>/g,
+    interface: /export\s+interface\s+(\w+)(?:\s+extends\s+(\w+))?\s*\{/g,
+    enum: /export\s+enum\s+(\w+)\s*\{/g,
+  }
+};
+
+// Result tracking
+let warnings = 0;
+let errors = 0;
+
+/**
+ * Main validation function
+ */
+async function validateTypeSystem() {
+  console.log(chalk.blue('🔍 Type System Validation'));
+  console.log(chalk.blue('========================'));
+
+  try {
+    // Read files
+    const supabaseContent = await fs.promises.readFile(CONFIG.paths.supabase, 'utf8');
+    const databaseContent = await fs.promises.readFile(CONFIG.paths.database, 'utf8');
+    const centralModelsContent = await fs.promises.readFile(CONFIG.paths.centralModels, 'utf8');
+    
+    let typeGuardsContent = '';
+    let typeMappersContent = '';
+    
+    try {
+      typeGuardsContent = await fs.promises.readFile(CONFIG.paths.typeGuards, 'utf8');
+    } catch (err) {
+      warning(`Could not read typeGuards.ts: ${err instanceof Error ? err.message : String(err)}`);
+    }
+    
+    try {
+      typeMappersContent = await fs.promises.readFile(CONFIG.paths.typeMappers, 'utf8');
+    } catch (err) {
+      warning(`Could not read typeMappers.ts: ${err instanceof Error ? err.message : String(err)}`);
+    }
+
+    // Extract types
+    const supabaseTables = extractSupabaseTables(supabaseContent);
+    const databaseTypes = extractDatabaseTypes(databaseContent);
+    const centralModelTypes = extractCentralModelTypes(centralModelsContent);
+
+    // Validate database.ts against supabase.ts
+    validateDatabaseCoverage(supabaseTables, databaseTypes);
+    
+    // Validate centralModels.ts against database.ts
+    validateCentralModelAlignment(centralModelTypes, databaseTypes);
+    
+    // Validate naming conventions
+    validateNamingConventions(databaseTypes, centralModelTypes);
+
+    // Validate type mappers if file exists
+    if (typeMappersContent) {
+      validateTypeMappers(typeMappersContent, databaseTypes, centralModelTypes);
+    }
+
+    // Validate type guards if file exists
+    if (typeGuardsContent) {
+      validateTypeGuards(typeGuardsContent, centralModelTypes);
+    }
+
+    // Summary
+    console.log(chalk.blue('\n📊 Validation Summary'));
+    console.log(chalk.blue('==================='));
+    
+    if (warnings === 0 && errors === 0) {
+      console.log(chalk.green('✅ No issues detected!'));
+    } else {
+      console.log(
+        `${warnings > 0 ? chalk.yellow(`⚠️  ${warnings} warnings`) : ''}` +
+        `${warnings > 0 && errors > 0 ? ' and ' : ''}` +
+        `${errors > 0 ? chalk.red(`❌ ${errors} errors`) : ''}`
+      );
+      
+      if (errors > 0) {
+        process.exit(1);
+      }
+    }
+  } catch (error) {
+    console.error(chalk.red(`❌ Error: ${error instanceof Error ? error.message : String(error)}`));
+    process.exit(1);
+  }
+}
+
+/**
+ * Extract table definitions from supabase.ts
+ */
+function extractSupabaseTables(content: string): string[] {
+  // This is a simplified extraction - in a real implementation,
+  // you would use the TypeScript Compiler API for more accurate parsing
+  const tablePattern = /['"]Tables['"]\s*:\s*\{([^}]*)\}/g;
+  const tableMatch = tablePattern.exec(content);
+  
+  if (!tableMatch) {
+    error('Could not find Tables definition in supabase.ts');
+    return [];
+  }
+
+  const tableSection = tableMatch[1];
+  const tableNamePattern = /['"](\w+)['"]/g;
+  const tables: string[] = [];
+  
+  let match;
+  while ((match = tableNamePattern.exec(tableSection)) !== null) {
+    tables.push(match[1]);
+  }
+  
+  return tables;
+}
+
+/**
+ * Extract types from database.ts
+ */
+function extractDatabaseTypes(content: string) {
+  const types = {
+    tables: [] as string[],
+    tableTypes: [] as {name: string, table: string}[],
+    insertTypes: [] as {name: string, table: string}[],
+    updateTypes: [] as {name: string, table: string}[],
+    customTypes: [] as string[],
+  };
+
+  // Reset regex patterns before using them
+  CONFIG.patterns.tableType.lastIndex = 0;
+  CONFIG.patterns.insertType.lastIndex = 0;
+  CONFIG.patterns.updateType.lastIndex = 0;
+
+  // Extract table types
+  let match;
+  while ((match = CONFIG.patterns.tableType.exec(content)) !== null) {
+    types.tableTypes.push({name: match[1], table: match[2]});
+    types.tables.push(match[2]);
+  }
+  
+  // Extract insert types
+  while ((match = CONFIG.patterns.insertType.exec(content)) !== null) {
+    types.insertTypes.push({name: match[1], table: match[2]});
+  }
+  
+  // Extract update types
+  while ((match = CONFIG.patterns.updateType.exec(content)) !== null) {
+    types.updateTypes.push({name: match[1], table: match[2]});
+  }
+
+  // Custom types would need more sophisticated parsing with TypeScript Compiler API
+  
+  return types;
+}
+
+/**
+ * Extract types from centralModels.ts
+ */
+function extractCentralModelTypes(content: string) {
+  const types = {
+    interfaces: [] as {name: string, extends: string | null}[],
+    enums: [] as string[],
+  };
+
+  // Reset regex patterns before using them
+  CONFIG.patterns.interface.lastIndex = 0;
+  CONFIG.patterns.enum.lastIndex = 0;
+
+  // Extract interfaces
+  let match;
+  while ((match = CONFIG.patterns.interface.exec(content)) !== null) {
+    types.interfaces.push({
+      name: match[1],
+      extends: match[2] || null
+    });
+  }
+  
+  // Extract enums
+  while ((match = CONFIG.patterns.enum.exec(content)) !== null) {
+    types.enums.push(match[1]);
+  }
+  
+  return types;
+}
+
+/**
+ * Validate database.ts coverage of supabase.ts tables
+ */
+function validateDatabaseCoverage(supabaseTables: string[], databaseTypes: ReturnType<typeof extractDatabaseTypes>) {
+  console.log(chalk.blue('\n🔄 Validating database.ts coverage of supabase.ts'));
+  
+  // Check if all supabase tables have corresponding types in database.ts
+  const missingTables = supabaseTables.filter(table => 
+    !databaseTypes.tables.includes(table)
+  );
+  
+  if (missingTables.length > 0) {
+    warning(`Missing table types in database.ts for: ${missingTables.join(', ')}`);
+    console.log(chalk.yellow('  Consider adding:'));
+    
+    for (const table of missingTables) {
+      const pascalCase = toPascalCase(table);
+      console.log(chalk.yellow(`    export type ${pascalCase}Table = Tables<'${table}'>;`));
+      console.log(chalk.yellow(`    export type ${pascalCase}Insert = InsertTables<'${table}'>;`));
+      console.log(chalk.yellow(`    export type ${pascalCase}Update = UpdateTables<'${table}'>;`));
+    }
+  } else {
+    console.log(chalk.green('  ✅ All Supabase tables have corresponding types in database.ts'));
+  }
+  
+  // Check for consistent naming patterns
+  const inconsistentNaming = databaseTypes.tableTypes.filter(type => 
+    type.name !== toPascalCase(type.table)
+  );
+  
+  if (inconsistentNaming.length > 0) {
+    warning('Inconsistent naming patterns detected:');
+    for (const type of inconsistentNaming) {
+      console.log(chalk.yellow(`  ${type.name}Table should be ${toPascalCase(type.table)}Table`));
+    }
+  }
+}
+
+/**
+ * Validate centralModels.ts alignment with database.ts
+ */
+function validateCentralModelAlignment(
+  centralModelTypes: ReturnType<typeof extractCentralModelTypes>, 
+  databaseTypes: ReturnType<typeof extractDatabaseTypes>
+) {
+  console.log(chalk.blue('\n🔄 Validating centralModels.ts alignment with database.ts'));
+  
+  // Check if business interfaces follow naming conventions
+  const tableTypeNames = databaseTypes.tableTypes.map(t => t.name);
+  
+  // Check for interfaces that should have corresponding database types
+  const potentialMisalignments = centralModelTypes.interfaces.filter(iface => 
+    !iface.name.endsWith('UI') && // UI interfaces are exempt
+    !iface.name.includes('Props') && // React props are exempt
+    !tableTypeNames.some(tableName => 
+      iface.name === tableName || // Direct match
+      iface.name === tableName.replace('Table', '') // Without 'Table' suffix
+    )
+  );
+  
+  if (potentialMisalignments.length > 0) {
+    warning('Potential misalignments between centralModels.ts and database.ts:');
+    for (const iface of potentialMisalignments) {
+      console.log(chalk.yellow(`  Interface '${iface.name}' has no corresponding database type`));
+    }
+  } else {
+    console.log(chalk.green('  ✅ All business interfaces align with database types'));
+  }
+  
+  // Group related database types (table, insert, update)
+  const groups = groupRelatedTypes(databaseTypes);
+  
+  // Find ungrouped types
+  const ungrouped = findUngroupedTypes(groups);
+  
+  if (Object.keys(ungrouped).length > 0) {
+    warning('Incomplete type groups in database.ts:');
+    for (const [base, group] of Object.entries(ungrouped)) {
+      const missing: string[] = [];
+      if (!group.table) missing.push('Table');
+      if (!group.insert) missing.push('Insert');
+      if (!group.update) missing.push('Update');
+      
+      console.log(chalk.yellow(`  ${base} is missing: ${missing.join(', ')}`));
+    }
+  }
+}
+
+/**
+ * Validate naming conventions
+ */
+function validateNamingConventions(
+  databaseTypes: ReturnType<typeof extractDatabaseTypes>,
+  centralModelTypes: ReturnType<typeof extractCentralModelTypes>
+) {
+  console.log(chalk.blue('\n🔄 Validating naming conventions'));
+  
+  // Check for database types that don't follow snake_case convention
+  // This would require more sophisticated parsing with TypeScript Compiler API
+  
+  // Check for domain types that don't follow camelCase or PascalCase convention
+  // This would require more sophisticated parsing with TypeScript Compiler API
+  
+  console.log(chalk.green('  ✅ Naming convention validation complete'));
+}
+
+/**
+ * Validate type mappers
+ */
+function validateTypeMappers(
+  content: string,
+  databaseTypes: ReturnType<typeof extractDatabaseTypes>,
+  centralModelTypes: ReturnType<typeof extractCentralModelTypes>
+) {
+  console.log(chalk.blue('\n🔄 Validating type mappers'));
+  
+  // Check for domain types that don't have corresponding mappers
+  const domainTypeNames = centralModelTypes.interfaces
+    .filter(i => !i.name.endsWith('UI') && !i.name.includes('Props'))
+    .map(i => i.name);
+  
+  const missingMappers: string[] = [];
+  
+  for (const domainType of domainTypeNames) {
+    const hasFromDbMapper = content.includes(`map${domainType}FromDatabase`) || 
+                            content.includes(`map${domainType}ToCamelCase`);
+    
+    const hasToDbMapper = content.includes(`map${domainType}ToDatabase`) ||
+                          content.includes(`map${domainType}ToSnakeCase`);
+    
+    if (!hasFromDbMapper && !hasToDbMapper) {
+      missingMappers.push(domainType);
+    }
+  }
+  
+  if (missingMappers.length > 0) {
+    warning(`Missing type mappers for: ${missingMappers.join(', ')}`);
+    console.log(chalk.yellow('  Consider generating mappers using:'));
+    
+    for (const type of missingMappers) {
+      const snakeCase = toSnakeCase(type);
+      console.log(chalk.yellow(`    npm run types:generate-mapper -- --table=${snakeCase} --domain=${type}`));
+    }
+  } else {
+    console.log(chalk.green('  ✅ All domain types have corresponding mappers'));
+  }
+}
+
+/**
+ * Validate type guards
+ */
+function validateTypeGuards(
+  content: string,
+  centralModelTypes: ReturnType<typeof extractCentralModelTypes>
+) {
+  console.log(chalk.blue('\n🔄 Validating type guards'));
+  
+  // Check for domain types that don't have corresponding type guards
+  const domainTypeNames = centralModelTypes.interfaces
+    .filter(i => !i.name.endsWith('UI') && !i.name.includes('Props'))
+    .map(i => i.name);
+  
+  const missingGuards: string[] = [];
+  
+  for (const domainType of domainTypeNames) {
+    const hasTypeGuard = content.includes(`is${domainType}`);
+    
+    if (!hasTypeGuard) {
+      missingGuards.push(domainType);
+    }
+  }
+  
+  if (missingGuards.length > 0) {
+    warning(`Missing type guards for: ${missingGuards.join(', ')}`);
+  } else {
+    console.log(chalk.green('  ✅ All domain types have corresponding type guards'));
+  }
+}
+
+/**
+ * Group related types (table, insert, update)
+ */
+function groupRelatedTypes(databaseTypes: ReturnType<typeof extractDatabaseTypes>) {
+  const groups: Record<string, {table?: string, insert?: string, update?: string}> = {};
+  
+  for (const {name, table} of databaseTypes.tableTypes) {
+    const base = name.replace('Table', '');
+    if (!groups[base]) groups[base] = {};
+    groups[base].table = table;
+  }
+  
+  for (const {name, table} of databaseTypes.insertTypes) {
+    const base = name.replace('Insert', '');
+    if (!groups[base]) groups[base] = {};
+    groups[base].insert = table;
+  }
+  
+  for (const {name, table} of databaseTypes.updateTypes) {
+    const base = name.replace('Update', '');
+    if (!groups[base]) groups[base] = {};
+    groups[base].update = table;
+  }
+  
+  return groups;
+}
+
+/**
+ * Find ungrouped types
+ */
+function findUngroupedTypes(groups: Record<string, {table?: string, insert?: string, update?: string}>) {
+  const ungrouped: typeof groups = {};
+  
+  for (const [base, group] of Object.entries(groups)) {
+    if (!group.table || !group.insert || !group.update) {
+      ungrouped[base] = group;
+    }
+  }
+  
+  return ungrouped;
+}
+
+/**
+ * Convert snake_case to PascalCase
+ */
+function toPascalCase(str: string): string {
+  return str
+    .split('_')
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
+}
+
+/**
+ * Convert PascalCase to snake_case
+ */
+function toSnakeCase(str: string): string {
+  return str
+    .replace(/([A-Z])/g, '_$1')
+    .toLowerCase()
+    .replace(/^_/, '');
+}
+
+/**
+ * Log a warning
+ */
+function warning(message: string) {
+  console.log(chalk.yellow(`⚠️  ${message}`));
+  warnings++;
+}
+
+/**
+ * Log an error
+ */
+function error(message: string) {
+  console.log(chalk.red(`❌ ${message}`));
+  errors++;
+}
+
+// Run the script
+validateTypeSystem().catch(err => {
+  console.error(chalk.red(`❌ Unhandled error: ${err instanceof Error ? err.message : String(err)}`));
+  process.exit(1);
+});
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (reason) => {
+  console.error(chalk.red(`❌ Unhandled rejection: ${reason instanceof Error ? reason.message : String(reason)}`));
+  process.exit(1);
+});

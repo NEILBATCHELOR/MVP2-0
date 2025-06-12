@@ -1,0 +1,73 @@
+{
+  "name": "RedSwan Real Estate Wrapper",
+  "symbol": "RSH20",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 token wrapper representing ERC-721 property units for fractional liquidity",
+  "initialSupply": "1000000",
+  "cap": "2000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "real_estate",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": true,
+  "feeOnTransfer": {
+    "enabled": true,
+    "fee": "0.5",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": true,
+    "votingPeriod": 14,
+    "proposalThreshold": "50000",
+    "quorumPercentage": "10"
+  },
+  "metadata": {
+    "website": "https://redswan.io",
+    "whitepaper": "",
+    "social": {
+      "twitter": "https://twitter.com/redswan_io"
+    }
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "RedSwan Real Estate Wrapper",
+    "symbol": "RSH20",
+    "initial_supply": "1000000",
+    "cap": "2000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "real_estate",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": true,
+    "fee_on_transfer": {
+      "enabled": true,
+      "fee": "0.5",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": true,
+      "votingPeriod": 14,
+      "proposalThreshold": "50000",
+      "quorumPercentage": "10"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "name": "Invoice Credit Token",
+  "symbol": "INV20",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 token for liquidity pool backed by multiple invoice slots",
+  "initialSupply": "2000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "asset_backed",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": true,
+  "feeOnTransfer": {
+    "enabled": true,
+    "fee": "0.5",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": false,
+    "votingPeriod": 0,
+    "proposalThreshold": "0",
+    "quorumPercentage": "0"
+  },
+  "metadata": {
+    "website": "https://factorchain.io",
+    "whitepaper": "",
+    "social": {
+      "twitter": "https://twitter.com/factorchain"
+    }
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Invoice Credit Token",
+    "symbol": "INV20",
+    "initial_supply": "2000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "asset_backed",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": true,
+    "fee_on_transfer": {
+      "enabled": true,
+      "fee": "0.5",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": false,
+      "votingPeriod": 0,
+      "proposalThreshold": "0",
+      "quorumPercentage": "0"
+    }
+  }
+}

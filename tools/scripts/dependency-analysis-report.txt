@@ -1,0 +1,78 @@
+📦 Dependency Analysis Tool
+=========================
+
+📁 Scanning source files for imports...
+🔍 Found 1300 files to analyze
+
+🔍 Checking for version conflicts...
+
+📦 Web3 Package Versions:
+  @reown/appkit: ^1.7.3
+  @reown/appkit-adapter-wagmi: ^1.7.3
+  wagmi: ^2.15.2
+  viem: ^2.28.3
+  @tanstack/react-query: ^5.75.2
+
+⚛️  React Package Versions:
+  react: ^18.2.0
+  react-dom: ^18.2.0
+  @types/react: ^18.3.20
+  @types/react-dom: ^18.3.5
+
+🔗 Blockchain Library Versions:
+  ethers: ^6.13.7
+  viem: ^2.28.3
+  wagmi: ^2.15.2
+
+🚀 Analyzing unused dependencies...
+
+📊 DEPENDENCY ANALYSIS REPORT
+==============================
+
+📦 Total Dependencies: 95
+🛠️  Total DevDependencies: 46
+✅ Used Packages: 130
+❌ Potentially Unused: 30
+⚠️  Uncertain: 0
+
+❌ UNUSED DEPENDENCIES:
+---------------------
+  - @hello-pangea/dnd
+  - @nomicfoundation/hardhat-ethers
+  - @nomicfoundation/hardhat-toolbox
+  - @nomicfoundation/hardhat-verify
+  - @solvprotocol/erc-3525
+  - @swc/core
+  - @types/d3
+  - @types/node
+  - browserify-zlib
+  - chalk
+  - concurrently
+  - crypto-browserify
+  - d3
+  - eslint
+  - https-browserify
+  - jsdom
+  - node-stdlib-browser
+  - os-browserify
+  - path-browserify
+  - react-router
+  - react-webcam
+  - readable-stream
+  - shadcn-ui
+  - solidity-coverage
+  - stream-browserify
+  - stream-http
+  - supabase
+  - ts-morph
+  - ts-node
+  - tsx
+
+💾 SUGGESTED CLEANUP COMMAND:
+--------------------------
+npm uninstall @hello-pangea/dnd @nomicfoundation/hardhat-ethers @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-verify @solvprotocol/erc-3525 @swc/core @types/d3 @types/node browserify-zlib chalk concurrently crypto-browserify d3 eslint https-browserify jsdom node-stdlib-browser os-browserify path-browserify react-router react-webcam readable-stream shadcn-ui solidity-coverage stream-browserify stream-http supabase ts-morph ts-node tsx
+
+⚠️  IMPORTANT: 
+  1. Some dependencies may be used at runtime or in build scripts
+  2. Always test thoroughly after removing dependencies
+  3. Some packages might be peer dependencies required by other packages

@@ -1,0 +1,99 @@
+[36m🔍 Web3 Library Version Checker[0m
+[36m===============================[0m
+
+[34mInstalled Versions (from package.json):[0m
+=====================================
+@reown/appkit: [32m^1.7.3[0m
+@reown/appkit-adapter-wagmi: [32m^1.7.3[0m
+wagmi: [32m^2.15.2[0m
+viem: [32m2.28.3[0m
+ethers: [32m6.13.7[0m
+@tanstack/react-query: [32m^5.75.2[0m
+
+[34mResolved Versions (from package-lock.json):[0m
+=========================================
+@reown/appkit: [32m1.7.3[0m
+@reown/appkit-adapter-wagmi: [32m1.7.3[0m
+wagmi: [32m2.15.2[0m
+viem: [32m2.28.3[0m
+ethers: [32m6.13.7[0m
+@tanstack/react-query: [32m5.75.2[0m
+
+[34mChecking node_modules for installed versions:[0m
+============================================
+@reown/appkit: [32m1.7.3[0m
+@reown/appkit-adapter-wagmi: [32m1.7.3[0m
+wagmi: [32m2.15.2[0m
+viem: [32m2.28.3[0m
+ethers: [32m6.13.7[0m
+@tanstack/react-query: [32m5.75.2[0m
+
+[34mChecking for multiple installed versions:[0m
+==========================================
+@reown/appkit: [33mNo instances found[0m
+@reown/appkit-adapter-wagmi: [33mNo instances found[0m
+wagmi: [33mNo instances found[0m
+viem: [31mMultiple versions detected:[0m
+  - [35mVersion 2.23.2[0m (2 instances)
+    → node_modules/@walletconnect/universal-provider/
+    → node_modules/@walletconnect/utils/
+ethers: [32mSingle version 5.8.0[0m
+@tanstack/react-query: [33mNo instances found[0m
+
+[34mAnalyzing source code imports:[0m
+===============================
+Found 1294 source files to analyze
+@reown/appkit: [32mImported in 2 places across 1 files[0m
+  Sample files:
+  - src/config/index.tsx
+@reown/appkit-adapter-wagmi: [32mImported in 1 places across 1 files[0m
+  Sample files:
+  - src/config/index.tsx
+wagmi: [32mImported in 8 places across 5 files[0m
+  Sample files:
+  - src/config/index.tsx
+  - src/components/wallet/WalletConnect.tsx
+  - src/infrastructure/web3/wallet/ChainCapitalConnector.ts
+  - ... and 2 more files
+viem: [32mImported in 9 places across 5 files[0m
+  Sample files:
+  - src/types/services.ts
+  - src/config/index.tsx
+  - src/infrastructure/web3/wallet/ChainCapitalConnector.ts
+  - ... and 2 more files
+ethers: [32mImported in 112 places across 87 files[0m
+  Sample files:
+  - src/types/onchainid.ts
+  - src/types/blockchain.ts
+  - src/types/web3/ethers.ts
+  - ... and 84 more files
+@tanstack/react-query: [32mImported in 1 places across 1 files[0m
+  Sample files:
+  - src/components/wallet/WalletConnect.tsx
+
+[34mChecking for potential conflicts:[0m
+==================================
+[33m⚠️  Both ethers (6.13.7) and viem (2.28.3) are installed.[0m
+   This is not necessarily a problem, but using both libraries can lead to inconsistent implementations.
+[31m❌ Version conflict: wagmi v2 requires viem v2, but you have 2.28.3[0m
+[32m✓ wagmi and @tanstack/react-query versions appear compatible[0m
+[32m✓ @reown/appkit and @reown/appkit-adapter-wagmi versions match[0m
+
+[34mRecommendations:[0m
+=================
+1. [32mIf multiple versions of any package were detected, consider running:[0m
+   npm dedupe
+
+2. [32mEnsure @reown/appkit and @reown/appkit-adapter-wagmi have matching versions:[0m
+   npm install @reown/appkit@X.Y.Z @reown/appkit-adapter-wagmi@X.Y.Z
+
+3. [32mFor wagmi v2, ensure you have compatible versions:[0m
+   - viem v2.x.x
+   - @tanstack/react-query v5.x.x
+
+4. [32mChoose either ethers or viem as your primary blockchain library:[0m
+   - If using wagmi, prefer viem as it's the native library
+   - If using ethers alongside wagmi, be careful of inconsistencies
+
+5. [32mAfter making changes, rebuild your application:[0m
+   npm run build

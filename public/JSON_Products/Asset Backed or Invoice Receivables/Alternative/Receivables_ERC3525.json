@@ -1,0 +1,99 @@
+{
+  "name": "Invoice Slot Token",
+  "symbol": "INVSLOT",
+  "standard": "ERC-3525",
+  "description": "Semi-fungible ERC-3525 slots representing tokenized invoice receivables by maturity and debtor",
+  "valueDecimals": 2,
+  "baseUri": "https://api.factorchain.io/invoice-slot/",
+  "metadataStorage": "ipfs",
+  "slotType": "invoice_receivable",
+  "isBurnable": true,
+  "isPausable": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "slotApprovals": true,
+  "valueApprovals": true,
+  "accessControl": "roles",
+  "updatableUris": true,
+  "updatableSlots": true,
+  "valueTransfersEnabled": true,
+  "mergable": true,
+  "splittable": true,
+  "dynamicMetadata": false,
+  "supportsEnumeration": true,
+  "fractionalTransfers": true,
+  "slotTransferability": true,
+  "transferRestrictions": true,
+  "dynamicAttributes": true,
+  "autoUnitCalculation": true,
+  "customSlotProperties": true,
+  "standardArrays": {
+    "slots": [
+      {
+        "id": "101",
+        "name": "Invoice #101 - StateMed TX",
+        "description": "USD 250K receivable for Medicaid reimbursements",
+        "properties": [
+          {
+            "name": "Amount",
+            "value": "250000"
+          },
+          {
+            "name": "Maturity",
+            "value": "2025-08-15"
+          },
+          {
+            "name": "Debtor",
+            "value": "State of Texas"
+          },
+          {
+            "name": "Insured",
+            "value": "Yes"
+          }
+        ]
+      },
+      {
+        "id": "102",
+        "name": "Invoice #102 - PharmaNet NJ",
+        "description": "USD 100K B2B receivable with net 60 terms",
+        "properties": [
+          {
+            "name": "Amount",
+            "value": "100000"
+          },
+          {
+            "name": "Maturity",
+            "value": "2025-07-10"
+          },
+          {
+            "name": "Debtor",
+            "value": "PharmaNet"
+          },
+          {
+            "name": "Insured",
+            "value": "No"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://factorchain.io",
+    "gameWorld": "NA"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Invoice Slot Token",
+    "symbol": "INVSLOT",
+    "value_decimals": 2,
+    "base_uri": "https://api.factorchain.io/invoice-slot/",
+    "metadata_storage": "ipfs",
+    "slot_type": "invoice_receivable",
+    "is_burnable": true,
+    "is_pausable": true,
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000"
+  }
+}

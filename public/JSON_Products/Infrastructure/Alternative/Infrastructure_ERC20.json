@@ -1,0 +1,73 @@
+{
+  "name": "Macquarie Infra Wrapper Token",
+  "symbol": "MQINFRA20T",
+  "standard": "ERC-20",
+  "decimals": 18,
+  "description": "ERC-20 wrapper for Macquarie project-linked infrastructure yield slots",
+  "initialSupply": "6000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "tokenType": "infrastructure",
+  "accessControl": "roles",
+  "allowanceManagement": true,
+  "permit": true,
+  "snapshot": true,
+  "feeOnTransfer": {
+    "enabled": true,
+    "fee": "0.25",
+    "recipient": "0x0000000000000000000000000000000000000000",
+    "feeType": "percentage"
+  },
+  "rebasing": {
+    "enabled": false,
+    "mode": "automatic",
+    "targetSupply": "0"
+  },
+  "governanceFeatures": {
+    "enabled": true,
+    "votingPeriod": 14,
+    "proposalThreshold": "100000",
+    "quorumPercentage": "15"
+  },
+  "metadata": {
+    "website": "https://macquarie.com",
+    "whitepaper": "",
+    "social": {
+      "twitter": "https://twitter.com/macquarie"
+    }
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Macquarie Infra Wrapper Token",
+    "symbol": "MQINFRA20T",
+    "initial_supply": "6000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "token_type": "infrastructure",
+    "access_control": "roles",
+    "allow_management": true,
+    "permit": true,
+    "snapshot": true,
+    "fee_on_transfer": {
+      "enabled": true,
+      "fee": "0.25",
+      "recipient": "0x0000000000000000000000000000000000000000",
+      "feeType": "percentage"
+    },
+    "rebasing": {
+      "enabled": false,
+      "mode": "automatic",
+      "targetSupply": "0"
+    },
+    "governance_features": {
+      "enabled": true,
+      "votingPeriod": 14,
+      "proposalThreshold": "100000",
+      "quorumPercentage": "15"
+    }
+  }
+}

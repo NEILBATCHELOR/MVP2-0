@@ -1,0 +1,69 @@
+{
+  "name": "Rare Whisky Cask NFT",
+  "symbol": "WHISK721",
+  "standard": "ERC-721",
+  "description": "ERC-721 tokens representing ownership of individual rare whisky casks stored in bonded warehouses",
+  "baseUri": "https://api.metacask.com/metadata/",
+  "metadataStorage": "ipfs",
+  "maxSupply": "500",
+  "hasRoyalty": true,
+  "royaltyPercentage": "2.5",
+  "royaltyReceiver": "0x000000000000000000000000000000000000dead",
+  "isBurnable": true,
+  "isPausable": true,
+  "assetType": "collectible",
+  "mintingMethod": "whitelist",
+  "autoIncrementIds": true,
+  "enumerable": true,
+  "uriStorage": "tokenId",
+  "accessControl": "roles",
+  "updatableUris": false,
+  "contractUri": "https://api.metacask.com/collection.json",
+  "dynamicMetadata": false,
+  "revealable": false,
+  "reservedTokens": "5",
+  "maxMintsPerTx": "1",
+  "maxMintsPerWallet": "5",
+  "mintingPrice": "0",
+  "useSafeTransfer": true,
+  "enableFractionalOwnership": true,
+  "provenanceTracking": true,
+  "standardArrays": {
+    "tokenAttributes": [
+      {
+        "trait_type": "Distillery",
+        "values": [
+          "Macallan",
+          "Lagavulin",
+          "Glenfiddich"
+        ]
+      },
+      {
+        "trait_type": "Age",
+        "values": [
+          "12Y",
+          "18Y",
+          "25Y"
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://metacask.com",
+    "collection": "Rare Whisky Vault",
+    "creator": "Metacask"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Rare Whisky Cask NFT",
+    "symbol": "WHISK721",
+    "base_uri": "https://api.metacask.com/metadata/",
+    "metadata_storage": "ipfs",
+    "max_supply": "500",
+    "has_royalty": true,
+    "royalty_percentage": "2.5",
+    "royalty_receiver": "0x000000000000000000000000000000000000dead",
+    "is_burnable": true,
+    "is_pausable": true
+  }
+}

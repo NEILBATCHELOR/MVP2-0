@@ -1,0 +1,63 @@
+{
+  "name": "Macquarie Infra Token",
+  "symbol": "MQINFRA1400",
+  "standard": "ERC-1400",
+  "description": "Tokenized interest in a diversified portfolio of infrastructure assets managed by Macquarie",
+  "initialSupply": "6000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "infrastructure",
+  "issuingJurisdiction": "AU",
+  "issuingEntityName": "Macquarie Asset Management",
+  "issuingEntityLei": "549300VNZYYZXZT0FY14",
+  "documentUri": "https://macquarie.com/tokenized-infra-fund.pdf",
+  "documentHash": "0xabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd",
+  "controllerAddress": "0xCAFEBABECAFEBABECAFEBABECAFEBABECAFEBABE",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "3000000",
+    "maxTransfer": "1000000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": false,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Core Infrastructure",
+        "partitionId": "CORE",
+        "amount": "4000000"
+      },
+      {
+        "name": "Growth Infrastructure",
+        "partitionId": "GROWTH",
+        "amount": "2000000"
+      }
+    ],
+    "controllers": [
+      "0xCAFEBABECAFEBABECAFEBABECAFEBABECAFEBABE"
+    ]
+  },
+  "metadata": {
+    "website": "https://macquarie.com",
+    "legalDocuments": "https://macquarie.com/funds/token-infrastructure"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Macquarie Infra Token",
+    "symbol": "MQINFRA1400",
+    "initial_supply": "6000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://macquarie.com/tokenized-infra-fund.pdf",
+    "document_hash": "0xabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd",
+    "controller_address": "0xCAFEBABECAFEBABECAFEBABECAFEBABECAFEBABE",
+    "require_kyc": true,
+    "security_type": "infrastructure"
+  }
+}

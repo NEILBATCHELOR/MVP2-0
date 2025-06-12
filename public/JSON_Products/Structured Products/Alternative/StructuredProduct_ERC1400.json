@@ -1,0 +1,63 @@
+{
+  "name": "SG Dual Tranche BTC CLN",
+  "symbol": "SGBTCLN",
+  "standard": "ERC-1400",
+  "description": "Dual tranche Credit-Linked Note by Soci\u00e9t\u00e9 G\u00e9n\u00e9rale linked to Bitcoin, using ERC-3525 slots",
+  "initialSupply": "1000000",
+  "cap": "1000000",
+  "isMintable": false,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "derivative",
+  "issuingJurisdiction": "FR",
+  "issuingEntityName": "Soci\u00e9t\u00e9 G\u00e9n\u00e9rale",
+  "issuingEntityLei": "O2RNE8IBXP4R0TD8PU41",
+  "documentUri": "https://investors.societegenerale.com/structured-products/Dual_Tranche_CLN_BTC.pdf",
+  "documentHash": "0xbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeef",
+  "controllerAddress": "0x2222222222222222222222222222222222222222",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "200000",
+    "maxTransfer": "50000"
+  },
+  "forcedTransfers": true,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Yield Tranche",
+        "partitionId": "YT",
+        "amount": "600000"
+      },
+      {
+        "name": "Principal Tranche",
+        "partitionId": "PT",
+        "amount": "400000"
+      }
+    ],
+    "controllers": [
+      "0x2222222222222222222222222222222222222222"
+    ]
+  },
+  "metadata": {
+    "website": "https://investors.societegenerale.com",
+    "legalDocuments": "https://investors.societegenerale.com/structured-products"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "SG Dual Tranche BTC CLN",
+    "symbol": "SGBTCLN",
+    "initial_supply": "1000000",
+    "cap": "1000000",
+    "is_mintable": false,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://investors.societegenerale.com/structured-products/Dual_Tranche_CLN_BTC.pdf",
+    "document_hash": "0xbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeefbeef",
+    "controller_address": "0x2222222222222222222222222222222222222222",
+    "require_kyc": true,
+    "security_type": "derivative"
+  }
+}

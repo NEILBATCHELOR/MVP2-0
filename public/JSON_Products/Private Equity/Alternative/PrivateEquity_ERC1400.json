@@ -1,0 +1,63 @@
+{
+  "name": "KKR PE Series Ledger",
+  "symbol": "KKRPELGR",
+  "standard": "ERC-1400",
+  "description": "Structured ledger for multiple private equity investor classes and vintage years across KKR Growth Funds",
+  "initialSupply": "2500000",
+  "cap": "5000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "private_equity",
+  "issuingJurisdiction": "US",
+  "issuingEntityName": "KKR & Co. Inc.",
+  "issuingEntityLei": "549300U2N9CP1D0OLU23",
+  "documentUri": "https://kkr.com/series-pe-token-offering.pdf",
+  "documentHash": "0x1234432112344321123443211234432112344321123443211234432112344321",
+  "controllerAddress": "0xAAAAAA111111BBBBBB222222CCCCCC333333DDDDDD",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "1500000",
+    "maxTransfer": "500000"
+  },
+  "forcedTransfers": true,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": true,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Vintage 2021",
+        "partitionId": "V21",
+        "amount": "1250000"
+      },
+      {
+        "name": "Vintage 2022",
+        "partitionId": "V22",
+        "amount": "1250000"
+      }
+    ],
+    "controllers": [
+      "0xAAAAAA111111BBBBBB222222CCCCCC333333DDDDDD"
+    ]
+  },
+  "metadata": {
+    "website": "https://kkr.com",
+    "legalDocuments": "https://kkr.com/funds/private-equity-series"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "KKR PE Series Ledger",
+    "symbol": "KKRPELGR",
+    "initial_supply": "2500000",
+    "cap": "5000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://kkr.com/series-pe-token-offering.pdf",
+    "document_hash": "0x1234432112344321123443211234432112344321123443211234432112344321",
+    "controller_address": "0xAAAAAA111111BBBBBB222222CCCCCC333333DDDDDD",
+    "require_kyc": true,
+    "security_type": "private_equity"
+  }
+}

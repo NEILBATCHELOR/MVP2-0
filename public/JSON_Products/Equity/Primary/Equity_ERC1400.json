@@ -1,0 +1,63 @@
+{
+  "name": "Klarna Equity Token",
+  "symbol": "KLRA-EQ",
+  "standard": "ERC-1400",
+  "description": "Tokenized private equity shares of Klarna AB for institutional investors",
+  "initialSupply": "5000000",
+  "cap": "5000000",
+  "isMintable": false,
+  "isBurnable": false,
+  "isPausable": true,
+  "securityType": "equity",
+  "issuingJurisdiction": "SE",
+  "issuingEntityName": "Klarna AB",
+  "issuingEntityLei": "5493001XS2FE8VZ0F079",
+  "documentUri": "https://investor.klarna.com/tokenized-equity-prospectus.pdf",
+  "documentHash": "0xabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcd",
+  "controllerAddress": "0x3333333333333333333333333333333333333333",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "1000000",
+    "maxTransfer": "250000"
+  },
+  "forcedTransfers": true,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": false,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Series B",
+        "partitionId": "B",
+        "amount": "3000000"
+      },
+      {
+        "name": "Series C",
+        "partitionId": "C",
+        "amount": "2000000"
+      }
+    ],
+    "controllers": [
+      "0x3333333333333333333333333333333333333333"
+    ]
+  },
+  "metadata": {
+    "website": "https://investor.klarna.com",
+    "legalDocuments": "https://investor.klarna.com/disclosures"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Klarna Equity Token",
+    "symbol": "KLRA-EQ",
+    "initial_supply": "5000000",
+    "cap": "5000000",
+    "is_mintable": false,
+    "is_burnable": false,
+    "is_pausable": true,
+    "document_uri": "https://investor.klarna.com/tokenized-equity-prospectus.pdf",
+    "document_hash": "0xabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcd",
+    "controller_address": "0x3333333333333333333333333333333333333333",
+    "require_kyc": true,
+    "security_type": "equity"
+  }
+}

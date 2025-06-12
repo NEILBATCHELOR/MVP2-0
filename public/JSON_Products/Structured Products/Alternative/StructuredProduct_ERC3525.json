@@ -1,0 +1,83 @@
+{
+  "name": "CLN Tranche Slot",
+  "symbol": "CLNSLOT",
+  "standard": "ERC-3525",
+  "description": "ERC-3525 semi-fungible slots for dual tranches of SG BTC CLN",
+  "valueDecimals": 6,
+  "baseUri": "https://api.socgen.com/metadata/cln/",
+  "metadataStorage": "ipfs",
+  "slotType": "tranche",
+  "isBurnable": true,
+  "isPausable": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "slotApprovals": true,
+  "valueApprovals": true,
+  "accessControl": "roles",
+  "updatableUris": true,
+  "updatableSlots": false,
+  "valueTransfersEnabled": true,
+  "mergable": false,
+  "splittable": true,
+  "dynamicMetadata": false,
+  "supportsEnumeration": true,
+  "fractionalTransfers": true,
+  "slotTransferability": true,
+  "transferRestrictions": true,
+  "dynamicAttributes": false,
+  "autoUnitCalculation": true,
+  "customSlotProperties": true,
+  "standardArrays": {
+    "slots": [
+      {
+        "id": "1",
+        "name": "Yield Tranche",
+        "description": "Pays coupon linked to BTC performance",
+        "properties": [
+          {
+            "name": "Coupon",
+            "value": "9.5%"
+          },
+          {
+            "name": "Linked Asset",
+            "value": "BTC"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Principal Tranche",
+        "description": "Returns par if BTC stays above barrier",
+        "properties": [
+          {
+            "name": "Barrier",
+            "value": "60%"
+          },
+          {
+            "name": "Maturity",
+            "value": "2025-12-31"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://investors.societegenerale.com",
+    "gameWorld": "NA"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "CLN Tranche Slot",
+    "symbol": "CLNSLOT",
+    "value_decimals": 6,
+    "base_uri": "https://api.socgen.com/metadata/cln/",
+    "metadata_storage": "ipfs",
+    "slot_type": "tranche",
+    "is_burnable": true,
+    "is_pausable": true,
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000"
+  }
+}

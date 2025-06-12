@@ -1,0 +1,91 @@
+{
+  "name": "KKR PE Tranche Slots",
+  "symbol": "KKRSLOTS",
+  "standard": "ERC-3525",
+  "description": "ERC-3525 tokens representing specific vintages and investor classes in KKR private equity funds",
+  "valueDecimals": 2,
+  "baseUri": "https://metadata.kkr.com/slots/",
+  "metadataStorage": "ipfs",
+  "slotType": "fund_class_vintage",
+  "isBurnable": true,
+  "isPausable": true,
+  "hasRoyalty": false,
+  "royaltyPercentage": "0",
+  "royaltyReceiver": "0x0000000000000000000000000000000000000000",
+  "slotApprovals": true,
+  "valueApprovals": true,
+  "accessControl": "roles",
+  "updatableUris": true,
+  "updatableSlots": false,
+  "valueTransfersEnabled": true,
+  "mergable": false,
+  "splittable": true,
+  "dynamicMetadata": false,
+  "supportsEnumeration": true,
+  "fractionalTransfers": false,
+  "slotTransferability": true,
+  "transferRestrictions": true,
+  "dynamicAttributes": false,
+  "autoUnitCalculation": true,
+  "customSlotProperties": true,
+  "standardArrays": {
+    "slots": [
+      {
+        "id": "1",
+        "name": "Institutional 2021",
+        "description": "PE fund interest class for institutional investors in 2021 vintage",
+        "properties": [
+          {
+            "name": "Vintage",
+            "value": "2021"
+          },
+          {
+            "name": "Class",
+            "value": "Institutional"
+          },
+          {
+            "name": "Carry",
+            "value": "10%"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Retail 2022",
+        "description": "Retail-focused tranche in 2022 vintage fund",
+        "properties": [
+          {
+            "name": "Vintage",
+            "value": "2022"
+          },
+          {
+            "name": "Class",
+            "value": "Retail"
+          },
+          {
+            "name": "Carry",
+            "value": "20%"
+          }
+        ]
+      }
+    ]
+  },
+  "metadata": {
+    "website": "https://kkr.com",
+    "gameWorld": "NA"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "KKR PE Tranche Slots",
+    "symbol": "KKRSLOTS",
+    "value_decimals": 2,
+    "base_uri": "https://metadata.kkr.com/slots/",
+    "metadata_storage": "ipfs",
+    "slot_type": "fund_class_vintage",
+    "is_burnable": true,
+    "is_pausable": true,
+    "has_royalty": false,
+    "royalty_percentage": "0",
+    "royalty_receiver": "0x0000000000000000000000000000000000000000"
+  }
+}

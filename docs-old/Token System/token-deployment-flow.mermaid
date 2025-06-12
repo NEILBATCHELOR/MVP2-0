@@ -1,0 +1,71 @@
+flowchart TD
+    Start([Start]) --> SelectStandard[Select Token Standard]
+    SelectStandard --> ConfigToken[Configure Token Properties]
+    ConfigToken --> ValidateConfig{Validate Configuration}
+    ValidateConfig -- Valid --> SaveTokenDB[(Save Token to Database)]
+    ValidateConfig -- Invalid --> FixErrors[Fix Validation Errors]
+    FixErrors --> ConfigToken
+    
+    SaveTokenDB --> DeployNow{Deploy Now?}
+    DeployNow -- Yes --> OpenDeployWizard[Open Deployment Wizard]
+    DeployNow -- No --> End([End - Token Saved])
+    
+    OpenDeployWizard --> SelectNetwork[Select Blockchain Network]
+    SelectNetwork --> ConnectWallet[Connect Wallet]
+    ConnectWallet --> EstimateGas[Estimate Gas Costs]
+    EstimateGas --> ConfirmDeploy{Confirm Deployment?}
+    
+    ConfirmDeploy -- Yes --> DeployContract[Deploy Contract]
+    ConfirmDeploy -- No --> CancelDeploy[Cancel Deployment]
+    CancelDeploy --> End
+    
+    DeployContract --> TrackTransaction[Track Transaction Status]
+    TrackTransaction --> DeploymentSuccess{Successful?}
+    
+    DeploymentSuccess -- Yes --> SaveDeployment[(Save Deployment Details)]
+    DeploymentSuccess -- No --> HandleError[Handle Error]
+    
+    HandleError --> RetryDeploy{Retry?}
+    RetryDeploy -- Yes --> DeployContract
+    RetryDeploy -- No --> End
+    
+    SaveDeployment --> UpdateTokenStatus[Update Token Status to Deployed]
+    UpdateTokenStatus --> End
+    
+    subgraph "Pre-Deployment Phase"
+        SelectStandard
+        ConfigToken
+        ValidateConfig
+        FixErrors
+        SaveTokenDB
+        DeployNow
+    end
+    
+    subgraph "Deployment Phase"
+        OpenDeployWizard
+        SelectNetwork
+        ConnectWallet
+        EstimateGas
+        ConfirmDeploy
+        DeployContract
+        TrackTransaction
+        DeploymentSuccess
+        HandleError
+        RetryDeploy
+    end
+    
+    subgraph "Post-Deployment Phase"
+        SaveDeployment
+        UpdateTokenStatus
+    end
+
+    classDef phaseStart fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef process fill:#e1f5fe,stroke:#0288d1,stroke-width:1px;
+    classDef decision fill:#fff8e1,stroke:#ffa000,stroke-width:1px;
+    classDef database fill:#e8f5e9,stroke:#388e3c,stroke-width:1px;
+    classDef complete fill:#f9fbe7,stroke:#9e9d24,stroke-width:1px;
+    
+    class Start,End phaseStart;
+    class SelectStandard,ConfigToken,FixErrors,OpenDeployWizard,SelectNetwork,ConnectWallet,EstimateGas,DeployContract,TrackTransaction,HandleError,UpdateTokenStatus process;
+    class ValidateConfig,DeployNow,ConfirmDeploy,DeploymentSuccess,RetryDeploy decision;
+    class SaveTokenDB,SaveDeployment database;

@@ -1,0 +1,63 @@
+{
+  "name": "Brookfield Energy Ledger",
+  "symbol": "BRENERGYLGR",
+  "standard": "ERC-1400",
+  "description": "Structured ledger for tokenized energy yield assets with solar and wind generation tranches",
+  "initialSupply": "5000000",
+  "cap": "10000000",
+  "isMintable": true,
+  "isBurnable": true,
+  "isPausable": true,
+  "securityType": "infrastructure",
+  "issuingJurisdiction": "CA",
+  "issuingEntityName": "Brookfield Renewable Partners",
+  "issuingEntityLei": "549300LNXYEQWECYJO02",
+  "documentUri": "https://brookfieldrenewable.com/token-yield-assets.pdf",
+  "documentHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "controllerAddress": "0xBEEEBEEEBEEEBEEEBEEEBEEEBEEEBEEEBEEEBEEE",
+  "requireKyc": true,
+  "transferRestrictions": {
+    "maxBalance": "3000000",
+    "maxTransfer": "1000000"
+  },
+  "forcedTransfers": false,
+  "issuanceModules": true,
+  "documentManagement": true,
+  "recoveryMechanism": false,
+  "standardArrays": {
+    "partitions": [
+      {
+        "name": "Yield Solar",
+        "partitionId": "YSOL",
+        "amount": "3000000"
+      },
+      {
+        "name": "Yield Wind",
+        "partitionId": "YWND",
+        "amount": "2000000"
+      }
+    ],
+    "controllers": [
+      "0xBEEEBEEEBEEEBEEEBEEEBEEEBEEEBEEEBEEEBEEE"
+    ]
+  },
+  "metadata": {
+    "website": "https://brookfieldrenewable.com",
+    "legalDocuments": "https://brookfieldrenewable.com/yield"
+  },
+  "config_mode": "max",
+  "blocks": {
+    "name": "Brookfield Energy Ledger",
+    "symbol": "BRENERGYLGR",
+    "initial_supply": "5000000",
+    "cap": "10000000",
+    "is_mintable": true,
+    "is_burnable": true,
+    "is_pausable": true,
+    "document_uri": "https://brookfieldrenewable.com/token-yield-assets.pdf",
+    "document_hash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "controller_address": "0xBEEEBEEEBEEEBEEEBEEEBEEEBEEEBEEEBEEEBEEE",
+    "require_kyc": true,
+    "security_type": "infrastructure"
+  }
+}
