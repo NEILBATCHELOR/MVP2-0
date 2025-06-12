@@ -1,0 +1,109 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "_config",
+        "type": "tuple",
+        "internalType": "struct BaseERC20Token.TokenConfig",
+        "components": [
+          { "name": "name", "type": "string", "internalType": "string" },
+          { "name": "symbol", "type": "string", "internalType": "string" },
+          { "name": "decimals", "type": "uint8", "internalType": "uint8" },
+          { "name": "initialSupply", "type": "uint256", "internalType": "uint256" },
+          { "name": "maxSupply", "type": "uint256", "internalType": "uint256" },
+          { "name": "transfersPaused", "type": "bool", "internalType": "bool" },
+          { "name": "mintingEnabled", "type": "bool", "internalType": "bool" },
+          { "name": "burningEnabled", "type": "bool", "internalType": "bool" },
+          { "name": "votingEnabled", "type": "bool", "internalType": "bool" },
+          { "name": "initialOwner", "type": "address", "internalType": "address" }
+        ]
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "mint",
+    "inputs": [
+      { "name": "to", "type": "address", "internalType": "address" },
+      { "name": "amount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "burn",
+    "inputs": [
+      { "name": "amount", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "pauseTransfers",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "unpauseTransfers",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getTokenInfo",
+    "inputs": [],
+    "outputs": [
+      { "name": "_name", "type": "string", "internalType": "string" },
+      { "name": "_symbol", "type": "string", "internalType": "string" },
+      { "name": "_decimals", "type": "uint8", "internalType": "uint8" },
+      { "name": "_totalSupply", "type": "uint256", "internalType": "uint256" },
+      { "name": "_maxSupply", "type": "uint256", "internalType": "uint256" },
+      { "name": "_totalBurned", "type": "uint256", "internalType": "uint256" },
+      { "name": "_transfersPaused", "type": "bool", "internalType": "bool" },
+      { "name": "_mintingEnabled", "type": "bool", "internalType": "bool" },
+      { "name": "_burningEnabled", "type": "bool", "internalType": "bool" },
+      { "name": "_votingEnabled", "type": "bool", "internalType": "bool" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "TokensMinted",
+    "inputs": [
+      { "name": "to", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "TokensBurned",
+    "inputs": [
+      { "name": "from", "type": "address", "indexed": true, "internalType": "address" },
+      { "name": "amount", "type": "uint256", "indexed": false, "internalType": "uint256" }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "MintingDisabled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "BurningDisabled",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "TransfersPaused",
+    "inputs": []
+  }
+]

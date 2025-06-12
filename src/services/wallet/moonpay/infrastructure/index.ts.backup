@@ -1,0 +1,17 @@
+/**
+ * Infrastructure MoonPay Services
+ * Re-exports all infrastructure service classes and instances
+ */
+
+export { NetworkFeesService, networkFeesService } from './NetworkFeesService';
+export { GeolocationService, geolocationService } from './GeolocationService';
+export { ComplianceService, complianceService } from './ComplianceService';
+export { HealthMonitor, healthMonitor } from './HealthMonitor';
+
+// Re-export types
+export type {
+  ServiceHealthStatus,
+  OverallHealthStatus,
+  HealthCheckConfig,
+  PerformanceMetrics
+} from './HealthMonitor';

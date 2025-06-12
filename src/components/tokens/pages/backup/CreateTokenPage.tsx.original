@@ -1,0 +1,986 @@
+/**
+ * CreateTokenPage
+ * 
+ * A comprehensive page for creating new tokens with validation and feedback.
+ * Supports all token standards and configuration modes.
+ */
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { AlertCircle, ArrowRight, ArrowLeft, FileText, Download, Upload, Save, Info, CheckCircle, PlusCircle, Eye, RefreshCw } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import AssetTypeSelector, { FinancialProductCategory } from '@/components/tokens/components/AssetTypeSelector';
+import StandardRecommender from '@/components/tokens/components/StandardRecommender';
+import TokenStandardSelector from '@/components/tokens/components/TokenStandardSelector';
+import { createToken } from '@/components/tokens/services/tokenService';
+import TokenForm from '@/components/tokens/forms/TokenForm';
+import AssetTypeConfigAdapter from '@/components/tokens/components/AssetTypeConfigAdapter';
+import TokenNavigation from '@/components/tokens/components/TokenNavigation';
+import TokenPageHeader from '@/components/tokens/components/TokenPageHeader';
+import TokenDashboardHeader from '@/components/tokens/components/TokenDashboardHeader';
+import { TokenStandard, TokenStatus } from '@/types/centralModels';
+import { Stepper } from '@/components/ui/stepper';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { TokenFormData } from '@/components/tokens/types';
+import { TokenMapperFactory, ConfigMode } from '@/components/tokens/utils/mappers';
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger 
+} from '@/components/ui/tooltip';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  ToastAction
+} from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
+
+// Import validation services
+import { validateTokenData, ValidationResult } from '@/components/tokens/services/tokenDataValidation';
+import { getTemplateForStandard } from '@/components/tokens/testing/tokenTemplates';
+import {
+  validateTokenBeforeSubmission,
+  validateTokenWithSchema,
+  formatValidationErrors,
+  checkMissingCriticalFields,
+  logger
+} from '@/components/tokens/validation/helpers/tokenValidationHelper';
+
+// Use the logger from the validation helper
+const logContext = 'CreateTokenPage';
+
+// Import configuration components
+import ERC20SimpleConfig from '@/components/tokens/config/min/ERC20Config';
+import ERC20DetailedConfig from '@/components/tokens/config/max/ERC20Config';
+import ERC721SimpleConfig from '@/components/tokens/config/min/ERC721Config';
+import ERC721DetailedConfig from '@/components/tokens/config/max/ERC721Config';
+import ERC1155SimpleConfig from '@/components/tokens/config/min/ERC1155Config';
+import ERC1155DetailedConfig from '@/components/tokens/config/max/ERC1155Config';
+import ERC1400SimpleConfig from '@/components/tokens/config/min/ERC1400Config';
+import ERC1400DetailedConfig from '@/components/tokens/config/max/ERC1400Config';
+import ERC3525SimpleConfig from '@/components/tokens/config/min/ERC3525Config';
+import ERC3525DetailedConfig from '@/components/tokens/config/max/ERC3525Config';
+import ERC4626SimpleConfig from '@/components/tokens/config/min/ERC4626Config';
+import ERC4626DetailedConfig from '@/components/tokens/config/max/ERC4626Config';
+
+/**
+ * CreateTokenPage - Component for creating a new token
+ * 
+ * This page guides users through the process of creating a new token:
+ * 1. Select an asset type
+ * 2. Get recommended token standards
+ * 3. Configure token properties
+ * 4. Preview and create the token
+ */
+const CreateTokenPage: React.FC = () => {
+  const { projectId } = useParams<{ projectId: string }>();
+  const navigate = useNavigate();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+  
+  // State for the token creation process
+  const [step, setStep] = useState<number>(0);
+  const [error, setError] = useState<string | null>(null);
+  const [assetType, setAssetType] = useState<FinancialProductCategory | null>(null);
+  const [selectedStandard, setSelectedStandard] = useState<TokenStandard | null>(null);
+  const [createStatus, setCreateStatus] = useState<'idle' | 'creating' | 'created'>('idle');
+  const [advancedMode, setAdvancedMode] = useState<boolean>(false);
+  
+  // State for success dialog
+  const [successDialogOpen, setSuccessDialogOpen] = useState(false);
+  const [createdTokenId, setCreatedTokenId] = useState<string | null>(null);
+  const [createdTokenName, setCreatedTokenName] = useState<string | null>(null);
+  const [creationLogs, setCreationLogs] = useState<any>(null);
+  
+  // Token form data
+  const [tokenData, setTokenData] = useState<TokenFormData>({
+    name: '',
+    symbol: '',
+    description: '',
+    decimals: 18,
+    standard: selectedStandard || TokenStandard.ERC20, // Provide default standard
+    blocks: {},
+    // Additional token properties will be added based on the selected standard
+  });
+  
+  // Update the tokenData when selectedStandard changes
+  useEffect(() => {
+    if (selectedStandard) {
+      setTokenData(prevData => ({
+        ...prevData,
+        standard: selectedStandard
+      }));
+    }
+  }, [selectedStandard]);
+  
+  // Helper functions for JSON template handling
+  
+  /**
+   * Returns the standard display name
+   */
+  const getStandardDisplayName = (standard: TokenStandard): string => {
+    const displayNames: Record<TokenStandard, string> = {
+      [TokenStandard.ERC20]: 'ERC-20 Fungible Token',
+      [TokenStandard.ERC721]: 'ERC-721 Non-Fungible Token (NFT)',
+      [TokenStandard.ERC1155]: 'ERC-1155 Multi Token Standard',
+      [TokenStandard.ERC1400]: 'ERC-1400 Security Token',
+      [TokenStandard.ERC3525]: 'ERC-3525 Semi-Fungible Token',
+      [TokenStandard.ERC4626]: 'ERC-4626 Tokenized Vault'
+    };
+    return displayNames[standard] || standard;
+  };
+  
+  /**
+   * Download current token form data as JSON
+   */
+  const downloadFormData = () => {
+    // Add config_mode to the token data
+    const exportData = {
+      ...tokenData,
+      config_mode: advancedMode ? 'max' : 'min'
+    };
+    
+    // Prepare the data for download
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${tokenData.symbol || 'token'}_${selectedStandard}_${advancedMode ? 'advanced' : 'basic'}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    toast({
+      title: "Template Saved",
+      description: `Saved ${advancedMode ? 'advanced' : 'basic'} template for ${selectedStandard}`,
+    });
+  };
+  
+  /**
+   * Download empty template based on selected standard and mode with comprehensive fields and typical values
+   */
+  const downloadEmptyTemplate = () => {
+    if (!selectedStandard) return;
+    
+    // Import the templates directly from the tokenTemplates file
+    import('@/components/tokens/testing/tokenTemplates').then(({ getTemplateForStandard }) => {
+      // Get the appropriate template based on standard and mode
+      const mode = advancedMode ? 'max' : 'min';
+      const template = getTemplateForStandard(selectedStandard, mode);
+      
+      // Prepare the download
+      const dataStr = JSON.stringify(template, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${selectedStandard}_template_${advancedMode ? 'advanced' : 'basic'}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }).catch(err => {
+      console.error("Error loading token templates:", err);
+      setError("Failed to load template data");
+    });
+  };
+  
+  /**
+   * Trigger file input click for JSON upload
+   */
+  const triggerFileUpload = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  
+  /**
+   * Handle uploaded JSON file with improved validation and error handling
+   */
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      const text = await file.text();
+      const jsonData = JSON.parse(text);
+      
+      // Log the uploaded data
+      logger.info(logContext, "JSON file uploaded", jsonData);
+      
+      // Determine the token standard from the uploaded data
+      const uploadedStandard = jsonData.standard || TokenStandard.ERC20;
+      
+      // Update the token standard in the UI
+      setSelectedStandard(uploadedStandard);
+      
+      // Validate the uploaded JSON data
+      const validationResult = validateTokenWithSchema(jsonData, logContext);
+      
+      if (!validationResult.valid) {
+        // Show validation warnings but still load the data
+        const formattedErrors = formatValidationErrors(validationResult.errors);
+        logger.error(logContext, "Validation issues with uploaded JSON", formattedErrors);
+        
+        // If the template standard doesn't match current selection, update it
+        const isChangingStandard = uploadedData.standard !== selectedStandard;
+        if (isChangingStandard) {
+          logger.info(`Changing standard from ${selectedStandard} to ${uploadedData.standard}`);
+          setSelectedStandard(uploadedData.standard);
+        }
+        
+        // Ensure config_mode is set correctly
+        const templateMode = isAdvancedTemplate ? 'max' : 'min';
+        const dataWithCorrectConfigMode = {
+          ...uploadedData,
+          config_mode: templateMode
+        };
+        
+        // Validate the token data using the validation service
+        const validationResult = validateTokenData(dataWithCorrectConfigMode);
+        
+        if (!validationResult.valid) {
+          // Show validation errors but still proceed with the upload
+          logger.error("Template validation errors:", validationResult.errors);
+          
+          // Group errors by field for better display
+          const errorsByField = validationResult.errors.reduce((acc, error) => {
+            if (!acc[error.field]) {
+              acc[error.field] = [];
+            }
+            acc[error.field].push(error.message);
+            return acc;
+          }, {} as Record<string, string[]>);
+          
+          // Show toast with validation errors
+          toast({
+            variant: "destructive",
+            title: "Template Validation Warnings",
+            description: (
+              <div className="max-h-40 overflow-y-auto">
+                <p>The template has validation issues but will still be loaded:</p>
+                <ul className="list-disc pl-4 mt-2">
+                  {Object.entries(errorsByField).map(([field, messages]) => (
+                    <li key={field}>
+                      <strong>{field}:</strong> {messages.join(', ')}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ),
+          });
+        }
+        
+        // Get a clean template for the standard
+        const referenceTemplate = getTemplateForStandard(uploadedData.standard, templateMode);
+        
+        // If changing standards, reset the form state to avoid property conflicts
+        if (isChangingStandard) {
+          // Only keep common fields from the previous state
+          const commonFields = ['name', 'symbol', 'description', 'decimals'];
+          const commonData = {} as Partial<TokenFormData>;
+          
+          // Copy only common fields from previous state
+          commonFields.forEach(field => {
+            if (field in tokenData) {
+              commonData[field as keyof TokenFormData] = tokenData[field as keyof TokenFormData];
+            }
+          });
+          
+          // Update token data with a clean slate plus uploaded values
+          setTokenData({
+            // Start with a clean template
+            ...referenceTemplate,
+            // Add common fields from previous state
+            ...commonData,
+            // Add uploaded data (this will override any conflicts)
+            ...dataWithCorrectConfigMode,
+            // Ensure standard is set correctly
+            standard: uploadedData.standard
+          } as TokenFormData);
+        } else {
+          // If not changing standards, just update the current form state
+          setTokenData(prevData => ({
+            ...prevData,
+            ...dataWithCorrectConfigMode
+          }));
+        }
+        
+        // Check for missing critical fields in uploaded template
+        const missingCriticalFields = [];
+        for (const key of ['name', 'symbol', 'description']) {
+          if (!uploadedData[key] || uploadedData[key] === '') {
+            missingCriticalFields.push(key);
+          }
+        }
+        
+        if (missingCriticalFields.length > 0) {
+          // Show warning for missing critical fields
+          toast({
+            variant: "warning",
+            title: "Warning: Missing Important Fields",
+            description: `The template is missing these important fields: ${missingCriticalFields.join(', ')}. Please fill them in.`,
+          });
+        } else {
+          // Show success toast
+          toast({
+            title: "Template Loaded Successfully",
+            description: `Loaded ${isAdvancedTemplate ? 'advanced' : 'basic'} template for ${uploadedData.standard}`,
+            variant: "default",
+          });
+        }
+        
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : "Unknown error";
+        logger.error("Failed to process JSON template", err);
+        setError(`Failed to parse JSON template: ${errorMessage}`);
+        toast({
+          variant: "destructive",
+          title: "Invalid JSON File",
+          description: "The file you uploaded contains invalid JSON data.",
+        });
+      }
+    };
+    
+    reader.onerror = () => {
+      logger.error("File reading error", reader.error);
+      setError("Failed to read the file");
+      toast({
+        variant: "destructive",
+        title: "File Error",
+        description: "Failed to read the uploaded file.",
+      });
+    };
+    
+    reader.readAsText(file);
+    
+    // Reset file input
+    if (event.target) {
+      event.target.value = '';
+    }
+  };
+  
+  /**
+   * Get supported array fields for the selected standard
+   */
+  const getSupportedArrayFields = (): string[] => {
+    if (!selectedStandard) return [];
+    
+    switch (selectedStandard) {
+      case TokenStandard.ERC721:
+        return ['tokenAttributes'];
+      case TokenStandard.ERC1155:
+        return ['tokenTypes'];
+      case TokenStandard.ERC1400:
+        return ['partitions', 'controllers'];
+      case TokenStandard.ERC3525:
+        return ['slots'];
+      case TokenStandard.ERC4626:
+        return ['yieldStrategy.protocol'];
+      default:
+        return [];
+    }
+  };
+  
+  // Handler for asset type selection
+  const handleAssetTypeSelect = (type: FinancialProductCategory) => {
+    setAssetType(type);
+    setStep(1); // Move to standard selection
+  };
+  
+  // Handler for token standard selection
+  const handleStandardSelect = (standard: TokenStandard) => {
+    setSelectedStandard(standard);
+    setStep(2); // Move to token configuration
+  };
+  
+  // Handler for form data changes
+  const handleFormChange = (data: Record<string, any>) => {
+    setTokenData(prevData => ({
+      ...prevData,
+      ...data
+    }));
+  };
+      return;
+    }
+    
+    try {
+      // Prepare token data for creation
+      let tokenCreateData;
+      let metadata = tokenData.metadata || {};
+      
+      // Use mapper factory to convert form data to database format
+      try {
+        const mapperFactory = new TokenMapperFactory();
+        const mapper = mapperFactory.getMapper(selectedStandard as TokenStandard, advancedMode ? 'max' : 'min');
+        
+        if (mapper) {
+          logger.info("Using mapper for token creation");
+          const mappedData = mapper.mapToDatabase({
+            ...tokenData,
+            standard: selectedStandard as TokenStandard,
+            asset_type: assetType,
+            config_mode: advancedMode ? 'max' : 'min',
+            status: TokenStatus.DRAFT,
+            metadata
+          });
+          
+          tokenCreateData = {
+            ...mappedData.tokenRecord,
+            blocks: mappedData.blocks,
+            config_mode: advancedMode ? 'max' : 'min', // Explicitly set config_mode
+            metadata: {
+              ...metadata,
+              ...mappedData.metadata
+            },
+            status: TokenStatus.DRAFT
+          };
+        }
+      } catch (mapperError) {
+        logger.warn("Mapper factory failed, falling back to direct data", mapperError);
+        
+        // If mapper failed or wasn't used, use the form data directly
+        tokenCreateData = {
+          ...tokenData,
+          standard: selectedStandard as TokenStandard,
+          asset_type: assetType,
+          config_mode: advancedMode ? 'max' : 'min', // Explicitly set config_mode
+          status: TokenStatus.DRAFT,
+          metadata
+        };
+      }
+      
+      logger.info("Submitting token data", tokenCreateData);
+      
+      // Call createToken with the prepared data
+      const newToken = await createToken(projectId, tokenCreateData);
+      
+      setCreateStatus('created');
+      setCreatedTokenId(newToken.id);
+      setCreatedTokenName(newToken.name);
+      
+      // Store creation logs for display in the success dialog
+      setCreationLogs(newToken.standardInsertionResults || {});
+      
+      // Show creation success dialog
+      setSuccessDialogOpen(true);
+      
+      // Show toast notification
+      toast({
+        title: "Token Created Successfully",
+        description: `${newToken.name} (${newToken.symbol}) has been created as a draft.`,
+        action: (
+          <ToastAction altText="View Token" onClick={() => navigate(`/projects/${projectId}/tokens/${newToken.id}`)}>
+            View Token
+          </ToastAction>
+        ),
+      });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
+      logger.error("Error creating token:", error);
+      setError(errorMessage);
+      setCreateStatus('idle');
+      
+      // Show error toast
+      toast({
+        variant: "destructive",
+        title: "Token Creation Failed",
+        description: errorMessage,
+      });
+    }
+  };
+
+  // Handle creating another token
+  const handleCreateAnotherToken = () => {
+    // Reset form to create a new token
+    setTokenData({
+      name: '',
+      symbol: '',
+      description: '',
+      decimals: 18,
+      standard: TokenStandard.ERC20, // Add the required standard field
+      blocks: {} // Add required blocks field
+    });
+    
+    // Reset other state
+    setAdvancedMode(false);
+    setSelectedStandard(null); // Use null instead of undefined
+    setAssetType(null); // Use null instead of 'TOKEN'
+    setCreateStatus('idle');
+    setCreatedTokenId(null);
+    setCreatedTokenName(null);
+    setCreationLogs({});
+    
+    // Close the dialog
+    setSuccessDialogOpen(false);
+    
+    // Reset to first step
+    setStep(0);
+  };
+  
+  // Handle viewing created token
+  const handleViewCreatedToken = () => {
+    navigate(`/projects/${projectId}/tokens/${createdTokenId}`);
+    setSuccessDialogOpen(false);
+  };
+
+  // Define steps for the stepper component
+  const steps = [
+    { title: "Asset Type", description: "Select the asset you're tokenizing" },
+    { title: "Token Standard", description: "Choose the token standard" },
+    { title: "Configure", description: "Set token properties" }
+  ];
+
+  // Handle step change
+  const handleStepChange = (newStep: number) => {
+    if (newStep < 0 || newStep > 2) return;
+    
+    if (newStep > step) {
+      // Advancing: check if we can proceed
+      if (newStep === 1 && !assetType) return;
+      if (newStep === 2 && !selectedStandard) return;
+    }
+    
+    setStep(newStep);
+  };
+
+  // Function to render the appropriate config component based on token standard and mode
+  const renderConfigComponent = () => {
+    if (!selectedStandard) return null;
+
+    // Generic input handler that works with all form components
+    const handleConfigInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      handleFormChange({ [name]: value });
+    };
+
+    switch (selectedStandard) {
+      case TokenStandard.ERC20:
+        return advancedMode ? (
+          <ERC20DetailedConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        ) : (
+          <ERC20SimpleConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        );
+      case TokenStandard.ERC721:
+        return advancedMode ? (
+          <ERC721DetailedConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        ) : (
+          <ERC721SimpleConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        );
+      case TokenStandard.ERC1155:
+        return advancedMode ? (
+          <ERC1155DetailedConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        ) : (
+          <ERC1155SimpleConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        );
+      case TokenStandard.ERC1400:
+        return advancedMode ? (
+          <ERC1400DetailedConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        ) : (
+          <ERC1400SimpleConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        );
+      case TokenStandard.ERC3525:
+        return advancedMode ? (
+          <ERC3525DetailedConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        ) : (
+          <ERC3525SimpleConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        );
+      case TokenStandard.ERC4626:
+        return advancedMode ? (
+          <ERC4626DetailedConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        ) : (
+          <ERC4626SimpleConfig 
+            tokenForm={tokenData as TokenFormData} 
+            handleInputChange={handleConfigInputChange}
+            setTokenForm={setTokenData as React.Dispatch<React.SetStateAction<TokenFormData>>}
+          />
+        );
+      default:
+        return <div>Unsupported token standard</div>;
+    }
+  };
+
+  // Render function for each step
+  const renderStepContent = () => {
+    switch (step) {
+      case 0:
+        return (
+          <Card className="bg-white shadow-md border-0 mb-8">
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-semibold mb-4">Select Asset Type</h2>
+              <p className="text-muted-foreground mb-6">
+                Choose the type of asset you want to tokenize. This will help determine the best token standard and configurations.
+              </p>
+              <div className="mt-4">
+                <AssetTypeSelector 
+                  selectedCategory={assetType}
+                  onChange={handleAssetTypeSelect} 
+                />
+              </div>
+            </CardContent>
+          </Card>
+        );
+      case 1:
+        return (
+          <Card className="bg-white shadow-md border-0 mb-8">
+            <CardContent className="p-8">
+              <h2 className="text-2xl font-semibold mb-4">Select Token Standard</h2>
+              <p className="text-muted-foreground mb-6">
+                Based on your asset type, here are the recommended token standards. Each standard provides different features and capabilities.
+              </p>
+              {assetType && (
+                <div className="mb-10">
+                  <StandardRecommender 
+                    assetCategory={assetType as any}
+                    onSelectStandard={handleStandardSelect}
+                  />
+                </div>
+              )}
+              <Separator className="my-10" />
+              <h3 className="text-xl font-medium mb-6">Or choose any standard manually:</h3>
+              <div className="mt-4">
+                <TokenStandardSelector
+                  selectedStandard={selectedStandard as TokenStandard}
+                  onChange={handleStandardSelect}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        );
+      case 2:
+        return (
+          <Card className="bg-white shadow-md border-0 mb-8">
+            <CardContent className="p-8">
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <h2 className="text-2xl font-semibold mb-1">Configure Token</h2>
+                  {selectedStandard && (
+                    <p className="text-lg font-medium text-primary">
+                      {getStandardDisplayName(selectedStandard)}
+                    </p>
+                  )}
+                  <p className="text-muted-foreground mt-1">
+                    Configure the properties of your token. These settings will determine how your token behaves and appears.
+                  </p>
+                </div>
+                
+                {/* Supported array fields info */}
+                {selectedStandard && getSupportedArrayFields().length > 0 && (
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="text-sm text-muted-foreground cursor-help flex items-center">
+                          <Info className="h-4 w-4 mr-1" />
+                          Supported Arrays
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent className="w-80">
+                        <p className="font-medium mb-1">This standard supports these array fields:</p>
+                        <ul className="list-disc pl-5">
+                          {getSupportedArrayFields().map(field => (
+                            <li key={field}>{field}</li>
+                          ))}
+                        </ul>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
+              </div>
+              
+              {/* Hidden file input for JSON upload */}
+              <input 
+                type="file" 
+                ref={fileInputRef} 
+                style={{ display: 'none' }} 
+                accept=".json" 
+                onChange={handleFileUpload} 
+              />
+              
+              {/* Mode selector and JSON template buttons */}
+              {selectedStandard && (
+                <div className="flex flex-wrap justify-between items-center gap-4 mb-6 border-b pb-4">
+                  <div className="flex items-center space-x-2">
+                    <Label htmlFor="advanced-mode" className="cursor-pointer">Basic</Label>
+                    <Switch
+                      id="advanced-mode"
+                      checked={advancedMode}
+                      onCheckedChange={setAdvancedMode}
+                    />
+                    <Label htmlFor="advanced-mode" className="cursor-pointer">Advanced</Label>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            onClick={downloadEmptyTemplate}
+                          >
+                            <Download className="h-4 w-4 mr-2" />
+                            Empty Template
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download an empty template for this token standard</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            onClick={triggerFileUpload}
+                          >
+                            <Upload className="h-4 w-4 mr-2" />
+                            Upload Template
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Import a JSON template to populate this form</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            onClick={downloadFormData}
+                          >
+                            <Save className="h-4 w-4 mr-2" />
+                            Save Progress
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download your current progress as JSON</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
+                </div>
+              )}
+              
+              {selectedStandard && assetType && (
+                <AssetTypeConfigAdapter
+                  assetCategory={assetType as any}
+                  tokenStandard={selectedStandard}
+                  blocks={{}}
+                  onChange={handleFormChange}
+                >
+                  {renderConfigComponent()}
+                </AssetTypeConfigAdapter>
+              )}
+              
+              <div className="mt-10 flex justify-end">
+                <Button 
+                  onClick={handleCreateToken} 
+                  disabled={createStatus === 'creating'}
+                  size="lg"
+                  className="px-8"
+                >
+                  {createStatus === 'creating' ? 'Creating...' : 'Create Token'}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      default:
+        return null;
+    }
+  };
+  
+  return (
+    <div>
+      {/* Project Header with Project Selector */}
+      <TokenPageHeader 
+        projectId={projectId || ''}
+        title="Token Platform"
+        subtitle="Manage tokenized financial assets for this project"
+      />
+      
+      {/* Token Navigation */}
+      {projectId && <TokenNavigation projectId={projectId} />}
+      
+      <div className="p-6">
+        {/* Dashboard Header */}
+        <TokenDashboardHeader
+          title="Create Token"
+          description="Create and configure a new tokenized asset"
+          error={error}
+          actionButton={
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => navigate(`/projects/${projectId}/tokens`)}
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Back to Tokens
+            </Button>
+          }
+        />
+
+        {/* Error Alert */}
+        {error && (
+          <Alert variant="destructive" className="mb-6">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+
+        {/* Use the Stepper component from stepper.tsx */}
+        <div className="my-8">
+          <Stepper 
+            steps={steps}
+            currentStep={step}
+            onStepChange={handleStepChange}
+          />
+        </div>
+        
+        {/* Render the content for the current step */}
+        {renderStepContent()}
+      </div>
+      
+      {/* Token Creation Success Dialog */}
+      <Dialog open={successDialogOpen} onOpenChange={setSuccessDialogOpen}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <CheckCircle className="text-green-500 h-5 w-5" />
+              Token Created Successfully
+            </DialogTitle>
+            <DialogDescription>
+              Your token has been created and saved as a draft.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="py-4">
+            <h3 className="font-medium text-lg">{createdTokenName}</h3>
+            <p className="text-muted-foreground text-sm">ID: {createdTokenId}</p>
+            
+            {creationLogs && (
+              <div className="mt-4 text-sm">
+                <h4 className="font-medium mb-2">Creation Details:</h4>
+                
+                <div className="space-y-2">
+                  {/* Main Token */}
+                  <div className="border rounded p-2">
+                    <p className="font-medium">Main Token Record: 
+                      <span className={creationLogs.mainToken?.status === 'success' ? 'text-green-500' : 'text-red-500'}>
+                        {' '}{creationLogs.mainToken?.status}
+                      </span>
+                    </p>
+                  </div>
+                  
+                  {/* Standard Properties */}
+                  <div className="border rounded p-2">
+                    <p className="font-medium">Standard Properties: 
+                      <span className={creationLogs.standardProperties?.status === 'success' ? 'text-green-500' : 'text-red-500'}>
+                        {' '}{creationLogs.standardProperties?.status}
+                      </span>
+                    </p>
+                  </div>
+                  
+                  {/* Related Records */}
+                  {creationLogs.arrayData && Object.keys(creationLogs.arrayData).length > 0 && (
+                    <div className="border rounded p-2">
+                      <p className="font-medium">Related Records:</p>
+                      <ul className="list-disc list-inside">
+                        {Object.entries(creationLogs.arrayData).map(([key, value]: [string, any]) => (
+                          <li key={key}>
+                            {key.replace(/_/g, ' ')}: 
+                            <span className={value?.status === 'success' ? 'text-green-500' : 'text-red-500'}>
+                              {' '}{value?.status} 
+                            </span>
+                            {value?.count && <span> ({value.count} records)</span>}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+          
+          <DialogFooter className="space-x-2">
+            <Button variant="outline" onClick={handleCreateAnotherToken}>
+              Create Another
+            </Button>
+            <Button onClick={handleViewCreatedToken}>
+              View Token
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+};
+
+export default CreateTokenPage; 

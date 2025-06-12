@@ -1,0 +1,25 @@
+/**
+ * Management MoonPay Services
+ * Re-exports all management service classes and instances
+ */
+
+export { CustomerService, customerService } from './CustomerService';
+export { AccountService, accountService } from './AccountService';
+export { AnalyticsService, analyticsService } from './AnalyticsService';
+export { PolicyService, policyService } from './PolicyService';
+export { PartnerService, partnerService } from './PartnerService';
+
+// Re-export types
+export type {
+  CustomerProfile,
+  CustomerBadges,
+  IdentityVerificationSession
+} from './CustomerService';
+
+export type {
+  PartnerAccount,
+  PartnerOnboarding,
+  PartnerMetrics,
+  PartnerIntegration,
+  DomainManagement
+} from './PartnerService';

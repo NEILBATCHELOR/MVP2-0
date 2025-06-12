@@ -1,0 +1,9 @@
+export { default as InvestorRegistration } from "./InvestorRegistration";
+export { default as InvestorVerification } from "./InvestorVerification";
+export { default as InvestorProfile } from "./InvestorProfile";
+export { default as InvestorKYC } from "./InvestorKYC";
+export { default as InvestorWalletSetup } from "./InvestorWalletSetup";
+export { default as InvestorDashboard } from "./InvestorDashboard";
+export { default as InvestorApprovalPending } from "./InvestorApprovalPending";
+export { default as InvestorLayout } from "./InvestorLayout";
+export { default as InvestorOnboardingFlow } from "./InvestorOnboardingFlow";

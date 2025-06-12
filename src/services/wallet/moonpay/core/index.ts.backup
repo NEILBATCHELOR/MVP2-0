@@ -1,0 +1,53 @@
+/**
+ * Core MoonPay Services
+ * Re-exports all core service classes and instances
+ */
+
+export { OnRampService, onRampService } from './OnRampService';
+export { OffRampService, offRampService } from './OffRampService';
+export { EnhancedSwapService, enhancedSwapService } from './EnhancedSwapService';
+export { EnhancedNFTService, enhancedNFTService } from './EnhancedNFTService';
+export { WebhookHandler, webhookHandler } from './WebhookHandler';
+
+// Re-export types
+export type {
+  OnRampTransaction,
+  OnRampCurrency,
+  OnRampQuote,
+  OnRampLimits,
+  PaymentMethod
+} from './OnRampService';
+
+export type {
+  OffRampTransaction,
+  OffRampQuote,
+  PayoutMethod
+} from './OffRampService';
+
+export type {
+  SwapRoute,
+  SwapAggregation,
+  LimitOrder,
+  SwapStrategy,
+  SwapAnalytics,
+  ArbitrageOpportunity,
+  LiquidityPool
+} from './EnhancedSwapService';
+
+export type {
+  NFTCollection,
+  NFTToken,
+  NFTListing,
+  NFTMarketplaceStats,
+  NFTPortfolio,
+  NFTMintingCampaign,
+  NFTRoyaltyDistribution
+} from './EnhancedNFTService';
+
+export type {
+  WebhookEvent,
+  WebhookConfig,
+  WebhookDelivery,
+  WebhookStats,
+  ProcessedWebhookResult
+} from './WebhookHandler';
